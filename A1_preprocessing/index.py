@@ -74,4 +74,4 @@ ob_parially_filtered=spaced_special_char_filter(spec_char,ob_tokenizer)
 final_tokens=spec_char_filter(spec_char,ob_parially_filtered)
 List_with_stopwords=final_tokens
 List_without_stopwords=stopwords_remover(stopwords_list,List_with_stopwords)
-train_val_test(List_with_stopwords,List_without_stopwords)
+# train_val_test(List_with_stopwords,List_without_stopwords)
