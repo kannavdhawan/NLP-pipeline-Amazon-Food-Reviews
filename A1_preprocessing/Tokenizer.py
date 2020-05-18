@@ -4,6 +4,8 @@ def tokenizer(pos,neg):
     tokenized_pos=[]
     tokenized_neg=[]
     tokens=[]
+    pos=pos.lower()
+    neg=neg.lower()
 # -------splitting by \n -- sentence tokenization-------
     positive_reviews_split=pos.splitlines() # returns a list
     negative_reviews_split=neg.splitlines()

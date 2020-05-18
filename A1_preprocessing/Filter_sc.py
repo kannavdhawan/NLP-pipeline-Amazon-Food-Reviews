@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-# Removing separated special characters which are not joined with any other word-- can also be done in next function
+# Removing separated special characters which are not joined with any other word-- 
 def spaced_special_char_filter(spec_char_list,ob_tokenizer):
     print(np.array(ob_tokenizer).shape)
     pass
