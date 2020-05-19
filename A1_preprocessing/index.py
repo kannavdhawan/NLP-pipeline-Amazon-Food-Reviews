@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from Tokenizer import tokenizer
 from Filter_sc import spaced_special_char_filter,spec_char_filter
-from Stopwords_split import stopwords_remover
+from Stopwords_split import stopwords_remover,train_val_test
 spec_char = ['!','"','#','$','&','(',')','*','+','/',':',';','<','=','>','@','[','\\',']','^','`','{','|','}','~','\t','\n',',']
 
 stopwords_list1=['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your',
@@ -67,11 +67,9 @@ negative_reviews=open("F:\canada\\641\Text_analytics\msci-text-analytics-s20\Rev
 negative_reviews=negative_reviews.read()
 
 
-
-
 ob_tokenizer=tokenizer(positive_reviews,negative_reviews)
 ob_parially_filtered=spaced_special_char_filter(spec_char,ob_tokenizer)
 final_tokens=spec_char_filter(spec_char,ob_parially_filtered)
 List_with_stopwords=final_tokens
 List_without_stopwords=stopwords_remover(stopwords_list,List_with_stopwords)
-# train_val_test(List_with_stopwords,List_without_stopwords)
+train_val_test(List_with_stopwords,List_without_stopwords)
