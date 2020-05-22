@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 # Removing separated special characters which are not joined with any other word-- 
 def spaced_special_char_filter(spec_char_list,ob_tokenizer):
-    print(np.array(ob_tokenizer).shape)
+    print(np.array(ob_tokenizer).shape) # just checking the shape, nothing else. 
     pass
     partially_filtered_positive_reviews=[]
     partially_filtered_negative_reviews=[]
@@ -36,6 +36,8 @@ def spaced_special_char_filter(spec_char_list,ob_tokenizer):
     print(partially_filtered_negative_reviews[9])
     return partial_filtered
 
+
+# Removing symbols concatinated with other strings
 def spec_char_filter(spec_char_list,ob_tokenizer):
     final_positive_tokens=[]
     final_negative_tokens=[]

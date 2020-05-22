@@ -4,7 +4,8 @@ import pandas as pd
 from Tokenizer import tokenizer
 from Filter_sc import spaced_special_char_filter,spec_char_filter
 from Stopwords_split import stopwords_remover,train_val_test
-spec_char = ['!','"','#','$','&','(',')','*','+','/',':',';','<','=','>','@','[','\\',']','^','`','{','|','}','~','\t','\n',',']
+import copy
+spec_char = ['!','"','#','%','$','&','(',')','*','+','/',':',';','<','=','>','@','[','\\',']','^','`','{','|','}','~','\t','\n']
 
 stopwords_list1=['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your',
                      'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 'hers', 'herself',
@@ -60,16 +61,39 @@ stopwords_list=list(stop_words_set)
     # print(type(negative_reviews))
 #--------------------------------------------------------**---------------------------------------------------------------------
 #Loading dataset
-positive_reviews = open("F:\canada\\641\Text_analytics\msci-text-analytics-s20\Reviews\pos.txt", "r")
-positive_reviews=positive_reviews.read()
+def read_files(pos_path,neg_path):
+    # positive_reviews = open("F:\canada\\641\Text_analytics\msci-text-analytics-s20\Reviews\pos.txt", "r")
+    positive_reviews = open(pos_path, "r")
+    positive_reviews=positive_reviews.read()
 
-negative_reviews=open("F:\canada\\641\Text_analytics\msci-text-analytics-s20\Reviews\\neg.txt","r")
-negative_reviews=negative_reviews.read()
+    # negative_reviews=open("F:\canada\\641\Text_analytics\msci-text-analytics-s20\Reviews\\neg.txt","r")
+    negative_reviews=open(neg_path,"r")
+    negative_reviews=negative_reviews.read()
+
+    return positive_reviews,negative_reviews
+
+print("ENTER Path for positive reviews: ")
+pos_path=input()
+print("ENTER Path for negative reviews: ")
+neg_path=input()
+files_tup=read_files(pos_path,neg_path)
+files=list(files_tup)
+
+positive_reviews=files[0]
+negative_reviews=files[1]
 
 
 ob_tokenizer=tokenizer(positive_reviews,negative_reviews)
 ob_parially_filtered=spaced_special_char_filter(spec_char,ob_tokenizer)
 final_tokens=spec_char_filter(spec_char,ob_parially_filtered)
-List_with_stopwords=final_tokens
-List_without_stopwords=stopwords_remover(stopwords_list,List_with_stopwords)
+# a=[]
+# a.append(final_tokens[0])
+# a.append(final_tokens[1])
+# problem of shallow copy.
+input_tokens=copy.deepcopy(final_tokens) # with stopwords
+List_without_stopwords=stopwords_remover(stopwords_list,input_tokens)
+# problem of shallow copy. workaround use copy.deepcopy() instead
+# List_with_stopwords=final_tokens.copy()  # beacause passed by reference inside above function 
+# print(final_tokens[0][0:3])
+List_with_stopwords=copy.deepcopy(final_tokens) 
 train_val_test(List_with_stopwords,List_without_stopwords)
