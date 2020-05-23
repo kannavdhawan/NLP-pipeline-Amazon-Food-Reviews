@@ -294,38 +294,38 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     # print(test_nsw[38000:])
     # print(test_nsw[-1:-4])
 
-    with open('train_sw.tsv','w') as f:
+    with open('train_sw.csv','w') as f:
         for sublist in train_sw:
             for item in sublist:
-                f.write(str(item) + '\t')
+                f.write(str(item) + ',')
             f.write('\n')
 
-    with open('val_sw.tsv','w') as f:
+    with open('val_sw.csv','w') as f:
         for sublist in val_sw:
             for item in sublist:
-                f.write(str(item) + '\t')
+                f.write(str(item) + ',')
             f.write('\n')
 
-    with open('test_sw.tsv','w') as f:
+    with open('test_sw.csv','w') as f:
         for sublist in test_sw:
             for item in sublist:
-                f.write(str(item) + '\t')
+                f.write(str(item) + ',')
             f.write('\n')
 
-    with open('train_nsw.tsv','w') as f:
+    with open('train_nsw.csv','w') as f:
         for sublist in train_nsw:
             for item in sublist:
-                f.write(str(item) + '\t')
+                f.write(str(item) + ',')
             f.write('\n')
 
-    with open('val_nsw.tsv','w') as f:
+    with open('val_nsw.csv','w') as f:
         for sublist in val_nsw:
             for item in sublist:
-                f.write(str(item) + '\t')
+                f.write(str(item) + ',')
             f.write('\n')
 
-    with open('test_nsw.tsv','w') as f:
+    with open('test_nsw.csv','w') as f:
         for sublist in test_nsw:
             for item in sublist:
-                f.write(str(item) + '\t')
+                f.write(str(item) + ',')
             f.write('\n')

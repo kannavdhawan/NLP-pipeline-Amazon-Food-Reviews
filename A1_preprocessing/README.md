@@ -15,7 +15,11 @@
 #### * Returns a list final_tokens consisting of filtered positive and negative tokens without special characters. 
 
 
+###### Naive Bayes classifier follows the conditional independence of each of the features in the model, while Multinomial NB classifier is a specific instance of a NB classifier which uses a multinomial distribution for each of the features.
 
-
-
+References:
+# Citations:
+### 1. https://stats.stackexchange.com/questions/33185/difference-between-naive-bayes-multinomial-naive-bayes
+### 2. https://medium.com/@theflyingmantis/text-classification-in-nlp-naive-bayes-a606bf419f8c
+### 3. https://en.wikipedia.org/wiki/Multinomial_distribution
 
