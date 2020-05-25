@@ -47,13 +47,51 @@
 #     i.insert(0,"LABEL")
 # print(list1)
 
-l1=[[1],[2],[3]]
-for i in l1:
-    i.insert(0,'1')
-print(l1[-1:-3])
+# l1=[[1],[2],[3]]
+# for i in l1:
+#     i.insert(0,'1')
+# print(l1[-1:-3])
 
 # l1=[1,2]
 # l2=l1.copy()
 # l2.remove(2)
 # print(l1)
+# import pandas as pd 
+# a=pd.DataFrame([['abc,cde'],['abc,cde']])
+# print(a)
+# b=[]
+# for i in range(len(a)):
+#     b.append(list(a.iloc[i]))
+# print(b)
 
+# print('\'')
+# print(list('abc,sds'))
+# stri='a,b,c'
+# print(stri.split(","))
+
+
+# list33=[['hello']]
+# with open('t.csv','w') as f:
+#     for i in list33:
+#         for j in i:
+#             if j.find("'"):
+#                 f.write('"'+str(j)+'"')        
+#                 print('\"'+str(j)+'\"')
+#                 print(True)
+#             else:
+#                 print(False)
+
+
+
+# aa=pd.read_csv("a.csv",sep=';',header=None)
+# a=[]
+# for i in range(len(aa)):
+#     print(aa.iloc[i,0])
+#     a=aa.iloc[i,0].split(',')
+#     print(a)
+#     break
+
+
+i=[1,2]
+j=i.copy()
+print(i+j)

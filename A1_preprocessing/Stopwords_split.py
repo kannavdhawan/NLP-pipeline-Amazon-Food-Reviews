@@ -115,10 +115,12 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     print('out_sw--------------')
     print(out_sw[0:10])
 
-    with open('out_sw.tsv','w') as f:
+    with open('out_sw.csv','w') as f:
         for sublist in out_sw:
             for item in sublist:
-                f.write(str(item) + '\t')
+                f.write(str(item)+',')
+                # f.write('\''+str(item)+'\''+ ',') # adding string literal to make it easy to convert from csv to list of lists 
+                #in the classification task in a2 for making ngrams. basically for making backtracking easy.
             f.write('\n')
 
 
@@ -164,7 +166,7 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     train_data_neg_no_sw=[]
     val_data_neg_no_sw=[]
     test_data_neg_no_sw=[]
-    l_of_l_of_neg_rev_no_sw=List_with_stopwords[1]
+    l_of_l_of_neg_rev_no_sw=List_without_stopwords[1]
     neg_index_list_no_sw=list(range(0,len(l_of_l_of_neg_rev_no_sw)))
     
     index_train_data_neg_no_sw=random.sample(neg_index_list_no_sw,k=int(0.8*(len(neg_index_list_no_sw))))
@@ -206,10 +208,11 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     print(out_nsw[0:10])
 
 
-    with open('out_nsw.tsv','w') as f:
+    with open('out_nsw.csv','w') as f:
         for sublist in out_nsw:
             for item in sublist:
-                f.write(str(item) + '\t')
+                f.write(str(item)+',')
+                # f.write('\''+str(item)+'\''+ ',')
             f.write('\n')
 
     # Adding labels to the files 
@@ -225,47 +228,48 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     train_data_neg_no_sw1=copy.deepcopy(train_data_neg_no_sw)
     val_data_neg_no_sw1=copy.deepcopy(val_data_neg_no_sw)
     test_data_neg_no_sw1=copy.deepcopy(test_data_neg_no_sw)
+# Label insertion 
+    # for i in train_data_pos1:
+    #     i.insert(0,'1')
 
-    for i in train_data_pos1:
-        i.insert(0,'1')
+    # for i in val_data_pos1:
+    #     i.insert(0,'1')
 
-    for i in val_data_pos1:
-        i.insert(0,'1')
+    # for i in test_data_pos1:
+    #     i.insert(0,'1')
 
-    for i in test_data_pos1:
-        i.insert(0,'1')
+    # for i in train_data_neg1:
+    #     i.insert(0,'0')
 
-    for i in train_data_neg1:
-        i.insert(0,'0')
+    # for i in val_data_neg1:
+    #     i.insert(0,'0')
 
-    for i in val_data_neg1:
-        i.insert(0,'0')
+    # for i in test_data_neg1:
+    #     i.insert(0,'0')
 
-    for i in test_data_neg1:
-        i.insert(0,'0')
+    # for i in train_data_pos_no_sw1:
+    #     i.insert(0,'1')
 
-    for i in train_data_pos_no_sw1:
-        i.insert(0,'1')
+    # for i in val_data_pos_no_sw1:
+    #     i.insert(0,'1')
 
-    for i in val_data_pos_no_sw1:
-        i.insert(0,'1')
+    # for i in test_data_pos_no_sw1:
+    #     i.insert(0,'1')
 
-    for i in test_data_pos_no_sw1:
-        i.insert(0,'1')
+    # for i in train_data_neg_no_sw1:
+    #     i.insert(0,'0')
 
-    for i in train_data_neg_no_sw1:
-        i.insert(0,'0')
+    # for i in val_data_neg_no_sw1:
+    #     i.insert(0,'0')
 
-    for i in val_data_neg_no_sw1:
-        i.insert(0,'0')
-
-    for i in test_data_neg_no_sw1:
-        i.insert(0,'0')
-    print("train sw with labels --_______--")
-    print(train_data_pos1[0:5])
-    print("neg")
-    print(train_data_neg1[0:5])
+    # for i in test_data_neg_no_sw1:
+    #     i.insert(0,'0')
+    # print("train sw with labels --_______--")
+    # print(train_data_pos1[0:5])
+    # print("neg")
+    # print(train_data_neg1[0:5])
 # concatinating train_pos,train_neg-->train and so on for all the files
+# appending in base itself so train_data_pos1 will contain neg also for all.
     for i in train_data_neg1:
         train_data_pos1.append(i)
     train_sw=train_data_pos1
@@ -297,35 +301,47 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     with open('train_sw.csv','w') as f:
         for sublist in train_sw:
             for item in sublist:
-                f.write(str(item) + ',')
+                f.write(str(item)+',')
+                # f.write('\''+str(item)+'\''+',')
             f.write('\n')
-
+        
     with open('val_sw.csv','w') as f:
         for sublist in val_sw:
             for item in sublist:
-                f.write(str(item) + ',')
+                f.write(str(item)+',')
+                # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
     with open('test_sw.csv','w') as f:
         for sublist in test_sw:
             for item in sublist:
-                f.write(str(item) + ',')
+                f.write(str(item)+',')
+                # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
     with open('train_nsw.csv','w') as f:
         for sublist in train_nsw:
             for item in sublist:
-                f.write(str(item) + ',')
+                f.write(str(item)+',')
+                # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
     with open('val_nsw.csv','w') as f:
         for sublist in val_nsw:
             for item in sublist:
-                f.write(str(item) + ',')
+                f.write(str(item)+',')
+                # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
     with open('test_nsw.csv','w') as f:
         for sublist in test_nsw:
             for item in sublist:
-                f.write(str(item) + ',')
+                f.write(str(item)+',')
+                # f.write('\''+str(item)+'\''+',')
             f.write('\n')
+    # pos will have concatinated neg for all the l of l 
+    # print("train data pos: ",len(train_data_pos1))
+    # print("train data neg: ",len(train_data_neg1))
+    # print("val data pos: ",len(val_data_pos1))
+    # print("val data neg: ",len(val_data_neg1))
+    # print("test data neg: ",len(val_data_neg1))
