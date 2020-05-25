@@ -1,9 +1,9 @@
 # Dependencies
 import numpy as np
 import pandas as pd
-from Tokenizer import tokenizer
-from Filter_sc import spaced_special_char_filter,spec_char_filter
-from Stopwords_split import stopwords_remover,train_val_test
+from A1_preprocessing.Tokenizer import tokenizer
+from A1_preprocessing.Filter_sc import spaced_special_char_filter,spec_char_filter
+from A1_preprocessing.Stopwords_split import stopwords_remover,train_val_test
 import copy
 spec_char = ['!','"','#','%','$','&','(',')','*','+','/',':',';','<','=','>',',','@','[','\\',']','^','`','{','|','}','~','\t','\n']
 
