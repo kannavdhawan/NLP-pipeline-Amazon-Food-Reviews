@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import nltk
 from sklearn.naive_bayes import MultinomialNB
 
 # Labeling the TRAIN dataset
@@ -68,15 +69,15 @@ for i in range(len(train_sw)):
     train_sw_list.append(temp_train_sw)
     # print((train_sw.iloc[i,0])[:-1]) # slicing and removing extra comma which can be simply removed using eval otherwise. 
     # print(temp_train_sw)
-# print(train_sw_list[0:10])
-# print(len(train_sw_list))
+print(train_sw_list[0:10])
+print(len(train_sw_list))
 temp_train_nsw=[]
 train_nsw_list=[]
 for i in range(len(train_nsw)):
     temp_train_nsw=(train_nsw.iloc[i,0])[:-1].split(',')
     train_nsw_list.append(temp_train_nsw)
-# print(train_nsw_list[0:10])
-# print(len(train_nsw_list))
+print(train_nsw_list[0:10])
+print(len(train_nsw_list))
 
 
 
@@ -86,16 +87,16 @@ val_sw_list=[]
 for i in range(len(val_sw)):
     temp_val_sw=(val_sw.iloc[i,0])[:-1].split(',')
     val_sw_list.append(temp_val_sw)
-# print(val_sw_list[0:10])
-# print(len(val_sw_list))
+print(val_sw_list[0:10])
+print(len(val_sw_list))
 
 temp_val_nsw=[]
 val_nsw_list=[]
 for i in range(len(val_nsw)):
     temp_val_nsw=(val_nsw.iloc[i,0])[:-1].split(',')
     val_nsw_list.append(temp_val_nsw)
-# print(val_nsw_list[0:10])
-# print(len(val_nsw_list))
+print(val_nsw_list[0:10])
+print(len(val_nsw_list))
 
 
 
@@ -105,17 +106,17 @@ test_sw_list=[]
 for i in range(len(test_sw)):
     temp_test_sw=(test_sw.iloc[i,0])[:-1].split(',')
     test_sw_list.append(temp_test_sw)
-# print(test_sw_list[0:10])
-# print(len(test_sw_list))
+print(test_sw_list[0:10])
+print(len(test_sw_list))
 
 temp_test_nsw=[]
 test_nsw_list=[]
 for i in range(len(test_nsw)):
     temp_test_nsw=(test_nsw.iloc[i,0])[:-1].split(',')
     test_nsw_list.append(temp_test_nsw)
-# print(test_nsw_list[0:10])
-# print(len(test_nsw_list))
-
+print(test_nsw_list[0:10])
+print(len(test_nsw_list))
+# uncomment below_________________________-----------------------------------______________________________-
 # GENERATING N GRAMS 
 def n_grams(input_set,n):
     gram_list=[]
@@ -132,11 +133,12 @@ u=1                                                                # stopwords s
 unigram_train_sw=n_grams(train_sw_list,u)
 unigram_val_sw=n_grams(val_sw_list,u)
 unigram_test_sw=n_grams(test_sw_list,u)
-
+print("set 1: test ",len(unigram_test_sw))
 u=1                                                                # No stopwords set-2
 unigram_train_nsw=n_grams(train_nsw_list,u)
 unigram_val_nsw=n_grams(val_nsw_list,u)
 unigram_test_nsw=n_grams(test_nsw_list,u)
+print("set 2: train ",len(unigram_train_nsw))
 
 #bigrams
 
@@ -144,38 +146,86 @@ u=2                                                                # stopwords s
 bigrams_train_sw=n_grams(train_sw_list,u)
 bigrams_val_sw=n_grams(val_sw_list,u)
 bigrams_test_sw=n_grams(test_sw_list,u)
+print("set 3: train ",len(bigrams_train_sw))
 
 u=2                                                                # No stopwords set-4
 bigrams_train_nsw=n_grams(train_nsw_list,u)
 bigrams_val_nsw=n_grams(val_nsw_list,u)
 bigrams_test_nsw=n_grams(test_nsw_list,u)
+print("set 4: train ",len(bigrams_train_nsw))
 
 # unigram+bigrams 
 
 # stopwords set-5
 ub_train_sw=[]
-for i in len(unigram_train_sw):
+for i in range(len(unigram_train_sw)):
     ub_train_sw.append(unigram_train_sw[i]+bigrams_train_sw[i])
 
 ub_val_sw=[]
-for i in len(unigram_val_sw):
+for i in range(len(unigram_val_sw)):
     ub_val_sw.append(unigram_val_sw[i]+bigrams_val_sw[i])
 
 ub_test_sw=[]
-for i in len(unigram_test_sw):
+for i in range(len(unigram_test_sw)):
     ub_test_sw.append(unigram_test_sw[i]+bigrams_test_sw[i])
 
 # No stopwords set-6
 ub_train_nsw=[]
-for i in len(unigram_train_nsw):
+for i in range(len(unigram_train_nsw)):
     ub_train_nsw.append(unigram_train_nsw[i]+bigrams_train_nsw[i])
 
 ub_val_nsw=[]
-for i in len(unigram_val_nsw):
+for i in range(len(unigram_val_nsw)):
     ub_val_nsw.append(unigram_val_nsw[i]+bigrams_val_nsw[i])
 
 ub_test_nsw=[]
-for i in len(unigram_test_nsw):
+for i in range(len(unigram_test_nsw)):
     ub_test_nsw.append(unigram_test_nsw[i]+bigrams_test_nsw[i])
 print("testing uni+bi::")
 print(ub_test_nsw[:5])
+
+
+def dic(j):
+    return dict([(word, True) for word in j]) # returns dictionary
+def data_formatting(input,label_size):
+    for i in range(len(input)):
+        if i<=label_size:
+            temp=[(dic(j),1) for j in input] #format-->  [({},1)]
+        else:
+            temp=[(dic(j),0) for j in input]
+    return temp
+print("1")
+unigram_train_sw_final=data_formatting(unigram_train_sw,320000)
+print(unigram_train_sw_final[319999])
+print(unigram_train_sw_final[320000])
+print("2")
+unigram_val_sw_final=data_formatting(unigram_val_sw,40000)
+print("3")
+unigram_test_sw_final=data_formatting(unigram_test_sw,40000)
+
+print("4")
+unigram_train_nsw_final=data_formatting(unigram_train_nsw,320000)
+print("5")
+unigram_val_nsw_final=data_formatting(unigram_val_nsw,40000)
+print("6")
+unigram_test_nsw_final=data_formatting(unigram_test_nsw,40000)
+
+print("7")
+bigrams_train_sw_final=data_formatting(bigrams_train_sw,320000)
+print("8")
+bigrams_val_sw_final=data_formatting(bigrams_val_sw,40000)
+print("9")
+bigrams_test_sw_final=data_formatting(bigrams_test_sw,40000)
+
+bigrams_train_nsw_final=data_formatting(bigrams_train_nsw,320000)
+bigrams_val_nsw_final=data_formatting(bigrams_val_nsw,40000)
+bigrams_test_nsw_final=data_formatting(bigrams_test_nsw,40000)
+
+
+ub_train_sw_final=data_formatting(ub_train_sw,320000)
+ub_val_sw_final=data_formatting(ub_val_sw,40000)
+ub_test_sw_final=data_formatting(ub_test_sw,40000)
+
+ub_train_nsw_final=data_formatting(ub_train_nsw,320000)
+ub_val_nsw_final=data_formatting(ub_val_nsw,40000)
+ub_test_nsw_final=data_formatting(ub_test_nsw,40000)
