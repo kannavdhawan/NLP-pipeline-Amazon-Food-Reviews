@@ -1,5 +1,7 @@
 https://stackoverflow.com/questions/25155940/nltk-naivebayesclassifier-input-formatting
 https://www.nltk.org/_modules/nltk/classify/scikitlearn.html
+https://stackoverflow.com/questions/29139350/difference-between-ziplist-and-ziplist/29139418
+http://www.sfs.uni-tuebingen.de/~keberle/NLPTools/presentations/NLTK/NLTK_Classifiers.pdf
 
 #### nltk's nltk.classify.scikitlearn accepts vectorized dictionary which can either be a  feature vector with 
 #### with most common words for keys and booleans as values. Or It can also be just the words from the ith 
