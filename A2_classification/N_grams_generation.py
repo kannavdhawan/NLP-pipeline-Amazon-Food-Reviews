@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import nltk
 from sklearn.naive_bayes import MultinomialNB
+from nltk.classify.scikitlearn import SklearnClassifier
 
 # Labeling the TRAIN dataset
 train_sw=pd.read_csv("train_sw.csv",sep=';',header=None)
@@ -185,47 +186,73 @@ print("testing uni+bi::")
 print(ub_test_nsw[:5])
 
 
-def dic(j):
-    return dict([(word, True) for word in j]) # returns dictionary
-def data_formatting(input,label_size):
-    for i in range(len(input)):
-        if i<=label_size:
-            temp=[(dic(j),1) for j in input] #format-->  [({},1)]
+# def dic(j):
+#     return dict([(word, True) for word in j]) # returns dictionary
+# def data_formatting(input,label_size):
+#     for i in range(len(input)):
+#         if i<=label_size:
+#             temp=[(dic(j),1) for j in input] #format-->  [({},1)]
+#         else:
+#             temp=[(dic(j),0) for j in input]
+#     return temp
+
+
+# :param labeled_featuresets: A list of ``(featureset, label)``
+#             where each ``featureset`` is a dict mapping strings to either
+#             numbers, booleans or strings.
+
+def data_formatting(my_text,data1):
+    temp=[]
+    for i in range(len(my_text)):
+        a=dict()
+        for j in range(len(my_text[i])):
+            a[my_text[i][j]]=True
+        if i<data1:
+            temp.append((a,1))
         else:
-            temp=[(dic(j),0) for j in input]
+            temp.append((a,0))
     return temp
+
+
+
 print("1")
 unigram_train_sw_final=data_formatting(unigram_train_sw,320000)
 print(unigram_train_sw_final[319999])
 print(unigram_train_sw_final[320000])
 print("2")
 unigram_val_sw_final=data_formatting(unigram_val_sw,40000)
-print("3")
-unigram_test_sw_final=data_formatting(unigram_test_sw,40000)
 
-print("4")
-unigram_train_nsw_final=data_formatting(unigram_train_nsw,320000)
-print("5")
-unigram_val_nsw_final=data_formatting(unigram_val_nsw,40000)
-print("6")
-unigram_test_nsw_final=data_formatting(unigram_test_nsw,40000)
-
-print("7")
-bigrams_train_sw_final=data_formatting(bigrams_train_sw,320000)
-print("8")
-bigrams_val_sw_final=data_formatting(bigrams_val_sw,40000)
-print("9")
-bigrams_test_sw_final=data_formatting(bigrams_test_sw,40000)
-
-bigrams_train_nsw_final=data_formatting(bigrams_train_nsw,320000)
-bigrams_val_nsw_final=data_formatting(bigrams_val_nsw,40000)
-bigrams_test_nsw_final=data_formatting(bigrams_test_nsw,40000)
+MNB_classifier = SklearnClassifier(MultinomialNB())
+MNB_classifier.train(unigram_train_sw_final)
+print("MultinomialNB accuracy percent:",nltk.classify.accuracy(MNB_classifier, unigram_val_sw_final))
 
 
-ub_train_sw_final=data_formatting(ub_train_sw,320000)
-ub_val_sw_final=data_formatting(ub_val_sw,40000)
-ub_test_sw_final=data_formatting(ub_test_sw,40000)
+# print("3")
+# unigram_test_sw_final=data_formatting(unigram_test_sw,40000)
 
-ub_train_nsw_final=data_formatting(ub_train_nsw,320000)
-ub_val_nsw_final=data_formatting(ub_val_nsw,40000)
-ub_test_nsw_final=data_formatting(ub_test_nsw,40000)
+# print("4")
+# unigram_train_nsw_final=data_formatting(unigram_train_nsw,320000)
+# print("5")
+# unigram_val_nsw_final=data_formatting(unigram_val_nsw,40000)
+# print("6")
+# unigram_test_nsw_final=data_formatting(unigram_test_nsw,40000)
+
+# print("7")
+# bigrams_train_sw_final=data_formatting(bigrams_train_sw,320000)
+# print("8")
+# bigrams_val_sw_final=data_formatting(bigrams_val_sw,40000)
+# print("9")
+# bigrams_test_sw_final=data_formatting(bigrams_test_sw,40000)
+
+# bigrams_train_nsw_final=data_formatting(bigrams_train_nsw,320000)
+# bigrams_val_nsw_final=data_formatting(bigrams_val_nsw,40000)
+# bigrams_test_nsw_final=data_formatting(bigrams_test_nsw,40000)
+
+
+# ub_train_sw_final=data_formatting(ub_train_sw,320000)
+# ub_val_sw_final=data_formatting(ub_val_sw,40000)
+# ub_test_sw_final=data_formatting(ub_test_sw,40000)
+
+# ub_train_nsw_final=data_formatting(ub_train_nsw,320000)
+# ub_val_nsw_final=data_formatting(ub_val_nsw,40000)
+# ub_test_nsw_final=data_formatting(ub_test_nsw,40000)
