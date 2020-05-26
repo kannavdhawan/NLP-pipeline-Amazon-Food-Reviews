@@ -189,11 +189,12 @@ print(ub_test_nsw[:5])
 # def dic(j):
 #     return dict([(word, True) for word in j]) # returns dictionary
 # def data_formatting(input,label_size):
+#     temp=[]
 #     for i in range(len(input)):
 #         if i<=label_size:
-#             temp=[(dic(j),1) for j in input] #format-->  [({},1)]
+#             temp.append((dict([j, True]),1) for j in input[i]) #format-->  [({},1)]
 #         else:
-#             temp=[(dic(j),0) for j in input]
+#             temp.append((dict([(j, True)]),0) for j in input[i]) #format-->  [({},0)]
 #     return temp
 
 
@@ -201,58 +202,173 @@ print(ub_test_nsw[:5])
 #             where each ``featureset`` is a dict mapping strings to either
 #             numbers, booleans or strings.
 
-def data_formatting(my_text,data1):
+def data_formatting(input_gram,length):
     temp=[]
-    for i in range(len(my_text)):
-        a=dict()
-        for j in range(len(my_text[i])):
-            a[my_text[i][j]]=True
-        if i<data1:
-            temp.append((a,1))
+    for i in range(len(input_gram)):
+        temp_dictionary=dict()
+        for j in range(len(input_gram[i])):
+            temp_dictionary[input_gram[i][j]]=True
+        if i<length:
+            temp.append((temp_dictionary,1))
         else:
-            temp.append((a,0))
+            temp.append((temp_dictionary,0))
     return temp
 
 
 
 print("1")
 unigram_train_sw_final=data_formatting(unigram_train_sw,320000)
-print(unigram_train_sw_final[319999])
-print(unigram_train_sw_final[320000])
+print(list(unigram_train_sw_final[319999]))
+print(list(unigram_train_sw_final[320000]))
+print(list(unigram_train_sw_final[320001]))
 print("2")
 unigram_val_sw_final=data_formatting(unigram_val_sw,40000)
 
-MNB_classifier = SklearnClassifier(MultinomialNB())
-MNB_classifier.train(unigram_train_sw_final)
-print("MultinomialNB accuracy percent:",nltk.classify.accuracy(MNB_classifier, unigram_val_sw_final))
+
+print("3")
+unigram_test_sw_final=data_formatting(unigram_test_sw,40000)
+print(unigram_test_sw_final[39998])
+print(unigram_test_sw_final[39999])
+print(unigram_test_sw_final[40000])
+print(unigram_test_sw_final[40001])
+print("4")
+unigram_train_nsw_final=data_formatting(unigram_train_nsw,320000)
+print("5")
+unigram_val_nsw_final=data_formatting(unigram_val_nsw,40000)
+print("6")
+unigram_test_nsw_final=data_formatting(unigram_test_nsw,40000)
+
+print("7")
+bigrams_train_sw_final=data_formatting(bigrams_train_sw,320000)
+print("8")
+bigrams_val_sw_final=data_formatting(bigrams_val_sw,40000)
+print("9")
+bigrams_test_sw_final=data_formatting(bigrams_test_sw,40000)
+
+bigrams_train_nsw_final=data_formatting(bigrams_train_nsw,320000)
+bigrams_val_nsw_final=data_formatting(bigrams_val_nsw,40000)
+bigrams_test_nsw_final=data_formatting(bigrams_test_nsw,40000)
 
 
-# print("3")
-# unigram_test_sw_final=data_formatting(unigram_test_sw,40000)
+ub_train_sw_final=data_formatting(ub_train_sw,320000)
+ub_val_sw_final=data_formatting(ub_val_sw,40000)
+ub_test_sw_final=data_formatting(ub_test_sw,40000)
 
-# print("4")
-# unigram_train_nsw_final=data_formatting(unigram_train_nsw,320000)
-# print("5")
-# unigram_val_nsw_final=data_formatting(unigram_val_nsw,40000)
-# print("6")
-# unigram_test_nsw_final=data_formatting(unigram_test_nsw,40000)
+ub_train_nsw_final=data_formatting(ub_train_nsw,320000)
+ub_val_nsw_final=data_formatting(ub_val_nsw,40000)
+ub_test_nsw_final=data_formatting(ub_test_nsw,40000)
 
-# print("7")
-# bigrams_train_sw_final=data_formatting(bigrams_train_sw,320000)
-# print("8")
-# bigrams_val_sw_final=data_formatting(bigrams_val_sw,40000)
-# print("9")
-# bigrams_test_sw_final=data_formatting(bigrams_test_sw,40000)
+# classification 
 
-# bigrams_train_nsw_final=data_formatting(bigrams_train_nsw,320000)
-# bigrams_val_nsw_final=data_formatting(bigrams_val_nsw,40000)
-# bigrams_test_nsw_final=data_formatting(bigrams_test_nsw,40000)
+unigrams_sw=[unigram_train_sw_final,unigram_val_sw_final,unigram_test_sw_final]
+unigrams_nsw=[unigram_train_nsw_final,unigram_val_nsw_final,unigram_test_nsw_final]
+bigrams_sw=[bigrams_train_sw_final,bigrams_val_sw_final,bigrams_test_sw_final]
+bigrams_nsw=[bigrams_train_nsw_final,bigrams_val_nsw_final,bigrams_test_nsw_final]
+ub_sw=[ub_train_sw_final,ub_val_sw_final,ub_test_sw_final]
+ub_nsw=[ub_train_nsw_final,ub_val_nsw_final,ub_test_nsw_final]
+# Alpha::::::::::
+# alpha suppresses the effect of rare words. For instance, if there is only 1 spam email out of 20 emails
+# in the training set, then without having significant additive smoothing, model will classify the test data/emails 
+# as spam if that word is there in any of the email.
+
+#unigrams stopwords
+
+alpha_vals=[0.01,0.1,0.5,1.0,1.5,2.0]
+
+print("---------------------------------unigram stopwords----------------------------------------------")
+val_a=[]
+for i in alpha_vals:
+    MNB_classifier = SklearnClassifier(MultinomialNB(alpha=i, fit_prior=True, class_prior=None))
+    MNB_classifier.train(unigrams_sw[0])
+    val_acc=nltk.classify.accuracy(MNB_classifier, unigrams_sw[1])
+    print("Unigram sw Val acc at alpha=",i," is ",val_acc)
+    val_a.append(val_acc)
+print("\n")
+print("Unigrams sw val Best accuracy=",max(val_a)," at alpha=",alpha_vals[val_a.index(max(val_a))])
+
+MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
+MNB_classifier.train(unigrams_sw[0])
+print("Unigrams sw test accuracy=",nltk.classify.accuracy(MNB_classifier,unigrams_sw[2])," at best value of alpha")
+print("------------------------------------------------------------------------------------------------")
+
+print("---------------------------------unigram No stopwords----------------------------------------------")
+val_a=[]
+for i in alpha_vals:
+    MNB_classifier = SklearnClassifier(MultinomialNB(alpha=i, fit_prior=True, class_prior=None))
+    MNB_classifier.train(unigrams_nsw[0])
+    val_acc=nltk.classify.accuracy(MNB_classifier, unigrams_nsw[1])
+    print("Unigram nsw Val acc at alpha=",i," is ",val_acc)
+    val_a.append(val_acc)
+print("\n")
+print("Unigrams nsw val Best accuracy=",max(val_a)," at alpha=",alpha_vals[val_a.index(max(val_a))])
+
+MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
+MNB_classifier.train(unigrams_nsw[0])
+print("Unigrams nsw test accuracy=",nltk.classify.accuracy(MNB_classifier,unigrams_nsw[2])," at best value of alpha")
+print("------------------------------------------------------------------------------------------------")
+
+print("---------------------------------Bigram stopwords----------------------------------------------")
+val_a=[]
+for i in alpha_vals:
+    MNB_classifier = SklearnClassifier(MultinomialNB(alpha=i, fit_prior=True, class_prior=None))
+    MNB_classifier.train(bigrams_sw[0])
+    val_acc=nltk.classify.accuracy(MNB_classifier, bigrams_sw[1])
+    print("Bigram sw Val acc at alpha=",i," is ",val_acc)
+    val_a.append(val_acc)
+print("\n")
+print("Bigrams sw val Best accuracy=",max(val_a)," at alpha=",alpha_vals[val_a.index(max(val_a))])
+
+MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
+MNB_classifier.train(bigrams_sw[0])
+print("Bigrams sw test accuracy=",nltk.classify.accuracy(MNB_classifier,bigrams_sw[2])," at best value of alpha")
+print("------------------------------------------------------------------------------------------------")
+
+print("---------------------------------Bigram No stopwords----------------------------------------------")
+val_a=[]
+for i in alpha_vals:
+    MNB_classifier = SklearnClassifier(MultinomialNB(alpha=i, fit_prior=True, class_prior=None))
+    MNB_classifier.train(bigrams_nsw[0])
+    val_acc=nltk.classify.accuracy(MNB_classifier, bigrams_nsw[1])
+    print("Bigram nsw Val acc at alpha=",i," is ",val_acc)
+    val_a.append(val_acc)
+print("\n")
+print("Bigrams nsw val Best accuracy=",max(val_a)," at alpha=",alpha_vals[val_a.index(max(val_a))])
+
+MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
+MNB_classifier.train(bigrams_nsw[0])
+print("Bigrams nsw test accuracy=",nltk.classify.accuracy(MNB_classifier,bigrams_nsw[2])," at best value of alpha")
+print("------------------------------------------------------------------------------------------------")
 
 
-# ub_train_sw_final=data_formatting(ub_train_sw,320000)
-# ub_val_sw_final=data_formatting(ub_val_sw,40000)
-# ub_test_sw_final=data_formatting(ub_test_sw,40000)
+print("---------------------------------unigram+bigram stopwords----------------------------------------------")
+val_a=[]
+for i in alpha_vals:
+    MNB_classifier = SklearnClassifier(MultinomialNB(alpha=i, fit_prior=True, class_prior=None))
+    MNB_classifier.train(ub_sw[0])
+    val_acc=nltk.classify.accuracy(MNB_classifier, ub_sw[1])
+    print("unigram+bigram sw Val acc at alpha=",i," is ",val_acc)
+    val_a.append(val_acc)
+print("\n")
+print("unigram+bigram sw val Best accuracy=",max(val_a)," at alpha=",alpha_vals[val_a.index(max(val_a))])
 
-# ub_train_nsw_final=data_formatting(ub_train_nsw,320000)
-# ub_val_nsw_final=data_formatting(ub_val_nsw,40000)
-# ub_test_nsw_final=data_formatting(ub_test_nsw,40000)
+MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
+MNB_classifier.train(ub_sw[0])
+print("unigram+bigram sw test accuracy=",nltk.classify.accuracy(MNB_classifier,ub_sw[2])," at best value of alpha")
+print("------------------------------------------------------------------------------------------------")
+
+
+print("---------------------------------unigram+bigram No stopwords----------------------------------------------")
+val_a=[]
+for i in alpha_vals:
+    MNB_classifier = SklearnClassifier(MultinomialNB(alpha=i, fit_prior=True, class_prior=None))
+    MNB_classifier.train(ub_nsw[0])
+    val_acc=nltk.classify.accuracy(MNB_classifier, ub_nsw[1])
+    print("unigram+bigram nsw Val acc at alpha=",i," is ",val_acc)
+    val_a.append(val_acc)
+print("\n")
+print("unigram+bigram nsw val Best accuracy=",max(val_a)," at alpha=",alpha_vals[val_a.index(max(val_a))])
+
+MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
+MNB_classifier.train(ub_nsw[0])
+print("unigram+bigram nsw test accuracy=",nltk.classify.accuracy(MNB_classifier,ub_nsw[2])," at best value of alpha")
+print("------------------------------------------------------------------------------------------------")
