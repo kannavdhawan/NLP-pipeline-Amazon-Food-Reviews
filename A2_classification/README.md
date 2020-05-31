@@ -1,41 +1,68 @@
-https://stackoverflow.com/questions/25155940/nltk-naivebayesclassifier-input-formatting
-https://www.nltk.org/_modules/nltk/classify/scikitlearn.html
-https://stackoverflow.com/questions/29139350/difference-between-ziplist-and-ziplist/29139418
-http://www.sfs.uni-tuebingen.de/~keberle/NLPTools/presentations/NLTK/NLTK_Classifiers.pdf
+##### https://stackoverflow.com/questions/25155940/nltk-naivebayesclassifier-input-formatting
+##### https://www.nltk.org/_modules/nltk/classify/scikitlearn.html
+
+##### https://stackoverflow.com/questions/29139350/difference-between-ziplist-and-ziplist/29139418
+
+##### http://www.sfs.uni-tuebingen.de/~keberle/NLPTools/presentations/NLTK/NLTK_Classifiers.pdf
 
 #### nltk's nltk.classify.scikitlearn accepts vectorized dictionary which can either be a  feature vector with 
 #### with most common words for keys and booleans as values. Or It can also be just the words from the ith 
 #### reviews with True values. 
-class SklearnClassifier(ClassifierI):
-    def __init__(self, estimator, dtype=float, sparse=True):
-        self._clf = estimator
-        self._encoder = LabelEncoder()
-        self._vectorizer = DictVectorizer(dtype=dtype, sparse=sparse)
-    def classify_many(self, featuresets):
-        X = self._vectorizer.transform(featuresets)
-        classes = self._encoder.classes_
-        return [classes[i] for i in self._clf.predict(X)]
 
-:param featuresets: An iterable over featuresets, each a dict mapping
-    strings to either numbers, booleans or strings.
-:return: The predicted class label for each input sample.
+##### class SklearnClassifier(ClassifierI):
+##### 
+
+#####     def __init__(self, estimator, dtype=float, sparse=True):
+      
+#####   self._clf = estimator
+      
+#####   self._encoder = LabelEncoder()
+      
+#####   self._vectorizer = DictVectorizer(dtype=dtype, sparse=sparse)
+    
+##### def classify_many(self, featuresets):
+     
+#####    X = self._vectorizer.transform(featuresets)
+      
+#####   classes = self._encoder.classes_
+      
+#####   return [classes[i] for i in self._clf.predict(X)]
 
 
- def train(self, labeled_featuresets):
-        """
-        Train (fit) the scikit-learn estimator.
+##### :param featuresets: An iterable over featuresets, each a dict mapping
+   
+#####  strings to either numbers, booleans or strings.
 
-        :param labeled_featuresets: A list of ``(featureset, label)``
-            where each ``featureset`` is a dict mapping strings to either
-            numbers, booleans or strings.
-        """
+##### :return: The predicted class label for each input sample.
 
-        X, y = list(zip(*labeled_featuresets))
-        X = self._vectorizer.fit_transform(X)
-        y = self._encoder.fit_transform(y)
-        self._clf.fit(X, y)
 
-        return self
+
+#####  def train(self, labeled_featuresets):
+      
+#####   """
+      
+#####   Train (fit) the scikit-learn estimator.
+
+      
+#####   :param labeled_featuresets: A list of ``(featureset, label)``
+      
+#####       where each ``featureset`` is a dict mapping strings to either
+      
+#####       numbers, booleans or strings.
+      
+#####   """
+
+      
+#####   X, y = list(zip(*labeled_featuresets))
+      
+#####   X = self._vectorizer.fit_transform(X)
+      
+#####   y = self._encoder.fit_transform(y)
+      
+#####   self._clf.fit(X, y)
+
+      
+#####   return self
 
 
 outputs:
@@ -112,4 +139,5 @@ unigram+bigram nsw Val acc at alpha= 2.0  is  0.8226875
 
 unigram+bigram nsw val Best accuracy= 0.8237  at alpha= 1.0
 unigram+bigram nsw test accuracy= 0.826275  at best value of alpha
-------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
