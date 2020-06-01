@@ -3,10 +3,8 @@ import numpy as np
 import nltk
 from sklearn.naive_bayes import MultinomialNB
 from nltk.classify.scikitlearn import SklearnClassifier
-
 # Labeling the TRAIN dataset
 train_sw=pd.read_csv("train_sw.csv",sep=';',header=None)
-
 L1_train=pd.Series([int(1)]*320000)
 L0_train=pd.Series([int(0)]*320000)
 train_labels=pd.concat([L1_train,L0_train],ignore_index=True)
@@ -207,7 +205,7 @@ def data_formatting(input_gram,length):
     for i in range(len(input_gram)):
         temp_dictionary=dict()
         for j in range(len(input_gram[i])):
-            temp_dictionary[input_gram[i][j]]=True
+            temp_dictionary[input_gram[i][j]]=True # making it always true for every word to preserve all the details.
         if i<length:
             temp.append((temp_dictionary,1))
         else:
