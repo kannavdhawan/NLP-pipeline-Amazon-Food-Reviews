@@ -2,7 +2,7 @@
 -------------------------------------------------
 
 # Instructions to run the code:
-From the root of this repository, run `python3 Preprocessing/main.py` and input `Preprocessing/pos.txt` for positive reviews and `Preprocessing/neg.txt` on command line.
+From the root of this repository, run `python3 Preprocessing/main.py Reviews/Raw_data` .
 
 ____________________________________
 # main.py: 

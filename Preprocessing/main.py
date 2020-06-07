@@ -1,5 +1,7 @@
 # Dependencies
 import numpy as np # Never used in Assignment1 
+import os 
+import sys
 from Tokenizer import tokenizer
 from Filter_sc import spaced_special_char_filter,spec_char_filter
 from Stopwords_split import stopwords_remover,train_val_test
@@ -37,39 +39,44 @@ stopwords_list=list(stop_words_set)
     # print(type(negative_reviews))
 #--------------------------------------------------------**---------------------------------------------------------------------
 #Loading dataset
-def read_files(pos_path,neg_path):
-    positive_reviews = open(pos_path, "r")
-    positive_reviews=positive_reviews.read()
+# def main(raw_data_path):
 
-    negative_reviews=open(neg_path,"r")
-    negative_reviews=negative_reviews.read()
-
+# def read_files(pos_path,neg_path):
+def read_files(data_path):
+    with open(os.path.join(data_path, 'pos.txt')) as f:
+        positive_reviews = f.read()
+    with open(os.path.join(data_path, 'neg.txt')) as f:
+        negative_reviews = f.read()
+    # print(type(positive_reviews))
+    # positive_reviews = open(pos_path, "r")
+    # positive_reviews=positive_reviews.read()
+    # negative_reviews=open(neg_path,"r")
+    # negative_reviews=negative_reviews.read()
     return positive_reviews,negative_reviews
 
-print("ENTER Path for positive reviews: ")
-pos_path=input()
-print("ENTER Path for negative reviews: ")
-neg_path=input()
-files_tup=read_files(pos_path,neg_path)
-files=list(files_tup)
-import copy
-positive_reviews=files[0]
-negative_reviews=files[1]
+# print("ENTER Path for positive reviews: ")
+# pos_path=input()
+# print("ENTER Path for negative reviews: ")
+# neg_path=input()
+def main(data_path):
+    files_tup=read_files(data_path)
+    files=list(files_tup)
+    import copy
+    positive_reviews=files[0]
+    negative_reviews=files[1]
 
-#Function calls..
+    #Function calls..
 
-#1. calling the tokenizer function from Tokenizer.py which returns tokens.
-ob_tokenizer=tokenizer(positive_reviews,negative_reviews) # [tokenized_pos,tokenized_neg]
+    ob_tokenizer=tokenizer(positive_reviews,negative_reviews) # [tokenized_pos,tokenized_neg]     #1. calling the tokenizer function from Tokenizer.py which returns tokens.
+    ob_parially_filtered=spaced_special_char_filter(spec_char,ob_tokenizer)#2. calling 2 functions from script Filter_sc.py for special character removal 
+    final_tokens=spec_char_filter(spec_char,ob_parially_filtered)# [final_positive_tokens,final_negative_tokens]
+    # a=[]
+    # a.append(final_tokens[0])
+    # a.append(final_tokens[1])
+    input_tokens=copy.deepcopy(final_tokens)# Resulted in a problem of shallow copy.beacause passed by reference inside above function
+    List_with_stopwords=copy.deepcopy(final_tokens)
+    List_without_stopwords=stopwords_remover(stopwords_list,input_tokens)    # 3. Calling Stopwords_remover,train_val_test from Stopwords_split.py
+    train_val_test(List_with_stopwords,List_without_stopwords)
 
-#2. calling 2 functions from script Filter_sc.py for special character removal 
-ob_parially_filtered=spaced_special_char_filter(spec_char,ob_tokenizer)
-final_tokens=spec_char_filter(spec_char,ob_parially_filtered)# [final_positive_tokens,final_negative_tokens]
-# a=[]
-# a.append(final_tokens[0])
-# a.append(final_tokens[1])
-# Resulted in a problem of shallow copy.beacause passed by reference inside above function
-input_tokens=copy.deepcopy(final_tokens)
-List_with_stopwords=copy.deepcopy(final_tokens)
-# 3. Calling Stopwords_remover,train_val_test from Stopwords_split.py
-List_without_stopwords=stopwords_remover(stopwords_list,input_tokens)
-train_val_test(List_with_stopwords,List_without_stopwords)
+if __name__ == '__main__':
+    main(sys.argv[1])

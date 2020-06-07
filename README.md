@@ -4,5 +4,5 @@
 __________
 # Assignment 1--> Preprocessing 
 1. Please read the README.md in Preprocessing for instructions and code understanding.
-2. From the root of this repository, run `python3 Preprocessing/main.py` and input `Preprocessing/pos.txt` for positive reviews and `Preprocessing/neg.txt` on command line.
+2. From the root of this repository, run `python3 Preprocessing/main.py Reviews/Raw_data`
 __________
