@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 def tokenizer(pos,neg):
     tokenized_pos=[]
     tokenized_neg=[]
