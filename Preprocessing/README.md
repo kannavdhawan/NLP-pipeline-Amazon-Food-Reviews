@@ -23,3 +23,12 @@ References:
 ### 2. https://medium.com/@theflyingmantis/text-classification-in-nlp-naive-bayes-a606bf419f8c
 ### 3. https://en.wikipedia.org/wiki/Multinomial_distribution
 
+Not adding [] and '' here while creating csv's 
+code is commented. It can be craeted like that format. 
+I have craeted simple features of words. In classification, each line/review in csv is handeled as ['word1','word2'....]
+
+In order to create no bias, I have created the equal partitions of pos,neg reviews for train,val and test. 
+320000 each, 80% pos and 80% neg constitute the train data, total 640000
+40000 each, 10% pos and 10% neg constitute the val data, total 80000
+40000 each, 10% pos and 10% neg constitute the test data, total 80000
+please delete the csv files before running. 
