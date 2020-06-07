@@ -6,8 +6,8 @@ from Tokenizer import tokenizer
 from Filter_sc import spaced_special_char_filter,spec_char_filter
 from Stopwords_split import stopwords_remover,train_val_test
 
-spec_char = ['!','"','#','%','$','&','(',')','*','+','/',':',';','<','=','>',',','@','[','\\',']','^','`','{','|','}','~','\t','\n']
 
+spec_char = ['!','"','#','%','$','&','(',')','*','+','/',':',';','<','=','>',',','@','[','\\',']','^','`','{','|','}','~','\t','\n']
 stopwords_list1=['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your',
                      'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 'hers', 'herself',
                       'it', "it's", 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which',
@@ -64,9 +64,7 @@ def main(data_path):
     import copy
     positive_reviews=files[0]
     negative_reviews=files[1]
-
     #Function calls..
-
     ob_tokenizer=tokenizer(positive_reviews,negative_reviews) # [tokenized_pos,tokenized_neg]     #1. calling the tokenizer function from Tokenizer.py which returns tokens.
     ob_parially_filtered=spaced_special_char_filter(spec_char,ob_tokenizer)#2. calling 2 functions from script Filter_sc.py for special character removal 
     final_tokens=spec_char_filter(spec_char,ob_parially_filtered)# [final_positive_tokens,final_negative_tokens]
