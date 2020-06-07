@@ -1,13 +1,14 @@
 import random
 import numpy as np
 import copy
-
 # random.seed(1332)
-
 def stopwords_remover(stopwords_list,List_with_stopwords):
     pass
+    print("Before removing stopwords:--")
+    print(List_with_stopwords[0][0:5])
+    print(List_with_stopwords[1][0:5])
  # Removing stopwords from both positive and negative reviews
-    # List_without_stopwords=List_with_stopwords # pass by reference 
+    # List_without_stopwords=List_with_stopwords # pass by reference. resolved in main.py 
     List_without_stopwords=List_with_stopwords.copy()
     for review_type in range(0,len(List_without_stopwords)):
         for list_inner in range(0,len(List_without_stopwords[review_type])):
@@ -18,6 +19,7 @@ def stopwords_remover(stopwords_list,List_with_stopwords):
                 #     List_without_stopwords[review_type][list_inner].remove(stop)
                 # else:
                 #     continue
+    print("After removing stopwords:--")
     print(List_without_stopwords[0][0:5])
     print(List_without_stopwords[1][0:5])
     return List_without_stopwords
@@ -25,8 +27,9 @@ def stopwords_remover(stopwords_list,List_with_stopwords):
 def train_val_test(List_with_stopwords,List_without_stopwords):
     # "" With stopwords
         # "" For positive Reviews
-    print("##########################Testing List with stopwords######################")
-    print(List_with_stopwords[0][0:3])
+    
+    # print("##########################Testing List with stopwords######################")
+    # print(List_with_stopwords[0][0:3])
     train_data_pos=[]
     val_data_pos=[]
     test_data_pos=[]
@@ -209,7 +212,6 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
                 # f.write('\''+str(item)+'\''+ ',')
             f.write('\n')
 
-    # Adding labels to the files 
     train_data_pos1=copy.deepcopy(train_data_pos)
     val_data_pos1=copy.deepcopy(val_data_pos)
     test_data_pos1=copy.deepcopy(test_data_pos)
@@ -296,6 +298,7 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
         for sublist in train_sw:
             for item in sublist:
                 f.write(str(item)+',')
+                #uncomment below to add '' strings to each word.
                 # f.write('\''+str(item)+'\''+',')
             f.write('\n')
         

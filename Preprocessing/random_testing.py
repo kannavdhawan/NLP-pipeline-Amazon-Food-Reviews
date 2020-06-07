@@ -4,8 +4,6 @@
 
 # x=list(range(0,10))
 # print(x)
-
-
 # import random
 # list1=[[1,2],[3,4]]
 # # index=random.sample(list1,1)
