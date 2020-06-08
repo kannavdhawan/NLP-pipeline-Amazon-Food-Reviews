@@ -17,7 +17,6 @@ train_nsw['label']=train_labels
 train_nsw.columns = ['Text', 'Labels']
 print(train_sw.info())
 
-
 # Labeling the VAL dataset
 val_sw=pd.read_csv("val_sw.csv",sep=';',header=None)
 
