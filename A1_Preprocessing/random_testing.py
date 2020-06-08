@@ -116,3 +116,12 @@
 #     f.write(str('item')+',')
             # f.write('\''+str(item)+'\''+ ',') # adding string literal to make it easy to convert from csv to list of lists 
                 #in the classification task in a2 for making ngrams. basically for making backtracking easy.    f.write('\n')
+
+def a(): 
+    i=[1,2,3,4]
+    j=[4,5,6,7]
+    k=[333,555]
+    return j,i,k
+b=a()
+print(b)
+print(b[2])
