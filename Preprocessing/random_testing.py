@@ -101,3 +101,8 @@
 
 # import random
 # print(random.sample([1,2,3,4],k=3))
+# import os.path
+# with open(os.path.join('csv_splits/', "out11.csv"),'w') as f:
+#     f.write(str('item')+',')
+            # f.write('\''+str(item)+'\''+ ',') # adding string literal to make it easy to convert from csv to list of lists 
+                #in the classification task in a2 for making ngrams. basically for making backtracking easy.    f.write('\n')

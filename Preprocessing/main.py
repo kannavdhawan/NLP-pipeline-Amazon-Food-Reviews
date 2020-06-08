@@ -5,8 +5,6 @@ import sys
 from Tokenizer import tokenizer
 from Filter_sc import spaced_special_char_filter,spec_char_filter
 from Stopwords_split import stopwords_remover,train_val_test
-
-
 spec_char = ['!','"','#','%','$','&','(',')','*','+','/',':',';','<','=','>',',','@','[','\\',']','^','`','{','|','}','~','\t','\n']
 stopwords_list1=['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your',
                      'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 'hers', 'herself',

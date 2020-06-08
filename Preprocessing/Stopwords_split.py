@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import copy
+import os
 # random.seed(1332)
 def stopwords_remover(stopwords_list,List_with_stopwords):
     pass
@@ -112,7 +113,7 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     print('out_sw--------------')
     print(out_sw[0:10])
 
-    with open('out_sw.csv','w') as f:
+    with open(os.path.join('csv_splits/', "out_sw.csv"),'w') as f:
         for sublist in out_sw:
             for item in sublist:
                 f.write(str(item)+',')
@@ -205,7 +206,7 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     print(out_nsw[0:10])
 
 
-    with open('out_nsw.csv','w') as f:
+    with open(os.path.join('csv_splits/', "out_nsw.csv"),'w') as f:
         for sublist in out_nsw:
             for item in sublist:
                 f.write(str(item)+',')
@@ -294,43 +295,43 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     # print(test_nsw[38000:])
     # print(test_nsw[-1:-4])
 
-    with open('train_sw.csv','w') as f:
+    with open(os.path.join('csv_splits/', "train_sw.csv"),'w') as f:
         for sublist in train_sw:
             for item in sublist:
                 f.write(str(item)+',')
                 #uncomment below to add '' strings to each word.
                 # f.write('\''+str(item)+'\''+',')
             f.write('\n')
-        
-    with open('val_sw.csv','w') as f:
+
+    with open(os.path.join('csv_splits/', "val_sw.csv"),'w') as f:
         for sublist in val_sw:
             for item in sublist:
                 f.write(str(item)+',')
                 # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
-    with open('test_sw.csv','w') as f:
+    with open(os.path.join('csv_splits/', "test_sw.csv")    ,'w') as f:
         for sublist in test_sw:
             for item in sublist:
                 f.write(str(item)+',')
                 # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
-    with open('train_nsw.csv','w') as f:
+    with open(os.path.join('csv_splits/', "train_nsw.csv"),'w') as f:
         for sublist in train_nsw:
             for item in sublist:
                 f.write(str(item)+',')
                 # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
-    with open('val_nsw.csv','w') as f:
+    with open(os.path.join('csv_splits/', "val_nsw.csv"),'w') as f:
         for sublist in val_nsw:
             for item in sublist:
                 f.write(str(item)+',')
                 # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
-    with open('test_nsw.csv','w') as f:
+    with open(os.path.join('csv_splits/', "test_nsw.csv")    ,'w') as f:
         for sublist in test_nsw:
             for item in sublist:
                 f.write(str(item)+',')
