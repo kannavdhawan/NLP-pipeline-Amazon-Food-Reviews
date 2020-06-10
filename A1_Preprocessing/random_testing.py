@@ -117,11 +117,26 @@
             # f.write('\''+str(item)+'\''+ ',') # adding string literal to make it easy to convert from csv to list of lists 
                 #in the classification task in a2 for making ngrams. basically for making backtracking easy.    f.write('\n')
 
-def a(): 
-    i=[1,2,3,4]
-    j=[4,5,6,7]
-    k=[333,555]
-    return j,i,k
-b=a()
-print(b)
-print(b[2])
+# def a(): 
+#     i=[1,2,3,4]
+#     j=[4,5,6,7]
+#     k=[333,555]
+#     return j,i,k
+# b=a()
+# print(b)
+# print(b[2])
+
+
+# list1=[]
+# for i in ['ABC,DEF','djj,jhj']:
+#     list1=i.split(",")
+#     print(list1)
+# print(list1)
+
+
+# list_of_things = [21, 2, 93]
+# x=[thing for thing in list_of_things]
+# print(x)
+
+
+
