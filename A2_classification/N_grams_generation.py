@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import nltk
 import os
+import random
 from sklearn.naive_bayes import MultinomialNB
 from nltk.classify.scikitlearn import SklearnClassifier
 def data_conversion(data_path):
@@ -95,8 +96,6 @@ def data_conversion(data_path):
         val_nsw_list.append(temp_val_nsw)
     print(val_nsw_list[0:10])
     print(len(val_nsw_list))
-
-
 
     # Extarcting Testing data into list of list 
     temp_test_sw=[]
@@ -221,6 +220,7 @@ def data_formatting(input_gram,length):
             temp.append((temp_dictionary,0))
     return temp
 
+#[({"hello":True,},1),()]
 def formatted_data_generation(gram_list):
     unigram_train_sw=gram_list[0]
     unigram_val_sw=gram_list[1]
@@ -244,47 +244,26 @@ def formatted_data_generation(gram_list):
     ub_train_nsw=gram_list[15]
     ub_val_nsw=gram_list[16]
     ub_test_nsw=gram_list[17]
-    
+    x=2
     print("1")
-    unigram_train_sw_final=data_formatting(unigram_train_sw,320000)
-    print(list(unigram_train_sw_final[319999]))
-    print(list(unigram_train_sw_final[320000]))
-    print(list(unigram_train_sw_final[320001]))
-    print("2")
-    unigram_val_sw_final=data_formatting(unigram_val_sw,40000)
-
-    print("3")
-    unigram_test_sw_final=data_formatting(unigram_test_sw,40000)
-    print(unigram_test_sw_final[39998])
-    print(unigram_test_sw_final[39999])
-    print(unigram_test_sw_final[40000])
-    print(unigram_test_sw_final[40001])
-    print("4")
-    unigram_train_nsw_final=data_formatting(unigram_train_nsw,320000)
-    print("5")
-    unigram_val_nsw_final=data_formatting(unigram_val_nsw,40000)
-    print("6")
-    unigram_test_nsw_final=data_formatting(unigram_test_nsw,40000)
-
-    print("7")
-    bigrams_train_sw_final=data_formatting(bigrams_train_sw,320000)
-    print("8")
-    bigrams_val_sw_final=data_formatting(bigrams_val_sw,40000)
-    print("9")
-    bigrams_test_sw_final=data_formatting(bigrams_test_sw,40000)
-
-    bigrams_train_nsw_final=data_formatting(bigrams_train_nsw,320000)
-    bigrams_val_nsw_final=data_formatting(bigrams_val_nsw,40000)
-    bigrams_test_nsw_final=data_formatting(bigrams_test_nsw,40000)
-
-
-    ub_train_sw_final=data_formatting(ub_train_sw,320000)
-    ub_val_sw_final=data_formatting(ub_val_sw,40000)
-    ub_test_sw_final=data_formatting(ub_test_sw,40000)
-
-    ub_train_nsw_final=data_formatting(ub_train_nsw,320000)
-    ub_val_nsw_final=data_formatting(ub_val_nsw,40000)
-    ub_test_nsw_final=data_formatting(ub_test_nsw,40000)
+    unigram_train_sw_final=data_formatting(unigram_train_sw,len(unigram_train_sw)/2)
+    unigram_val_sw_final=data_formatting(unigram_val_sw,len(unigram_val_sw)/2)
+    unigram_test_sw_final=data_formatting(unigram_test_sw,len(unigram_test_sw)/2)
+    unigram_train_nsw_final=data_formatting(unigram_train_nsw,len(unigram_train_nsw)/2)
+    unigram_val_nsw_final=data_formatting(unigram_val_nsw,len(unigram_val_nsw)/2)
+    unigram_test_nsw_final=data_formatting(unigram_test_nsw,len(unigram_test_nsw)/2)
+    bigrams_train_sw_final=data_formatting(bigrams_train_sw,len(bigrams_train_sw)/2)
+    bigrams_val_sw_final=data_formatting(bigrams_val_sw,len(bigrams_val_sw)/2)
+    bigrams_test_sw_final=data_formatting(bigrams_test_sw,len(bigrams_test_sw)/2)
+    bigrams_train_nsw_final=data_formatting(bigrams_train_nsw,len(bigrams_train_nsw)/2)
+    bigrams_val_nsw_final=data_formatting(bigrams_val_nsw,len(bigrams_val_nsw)/2)
+    bigrams_test_nsw_final=data_formatting(bigrams_test_nsw,len(bigrams_test_nsw)/2)
+    ub_train_sw_final=data_formatting(ub_train_sw,len(ub_train_sw)/2)
+    ub_val_sw_final=data_formatting(ub_val_sw,len(ub_val_sw)/2)
+    ub_test_sw_final=data_formatting(ub_test_sw,len(ub_test_sw)/2)
+    ub_train_nsw_final=data_formatting(ub_train_nsw,len(ub_train_nsw))
+    ub_val_nsw_final=data_formatting(ub_val_nsw,len(ub_val_nsw))
+    ub_test_nsw_final=data_formatting(ub_test_nsw,len(ub_test_nsw))
     return unigram_train_sw_final,unigram_val_sw_final,unigram_test_sw_final,unigram_train_nsw_final,unigram_val_nsw_final,unigram_test_nsw_final,bigrams_train_sw_final,bigrams_val_sw_final,bigrams_test_sw_final,bigrams_train_nsw_final,bigrams_val_nsw_final,bigrams_test_nsw_final,ub_train_sw_final,ub_val_sw_final,ub_test_sw_final,ub_train_nsw_final,ub_val_nsw_final,ub_test_nsw_final
 # classification 
 def classify(formatted_data):
@@ -314,6 +293,19 @@ def classify(formatted_data):
     bigrams_nsw=[bigrams_train_nsw_final,bigrams_val_nsw_final,bigrams_test_nsw_final]
     ub_sw=[ub_train_sw_final,ub_val_sw_final,ub_test_sw_final]
     ub_nsw=[ub_train_nsw_final,ub_val_nsw_final,ub_test_nsw_final]
+    #reshuffling already shuffled data in assignment 1
+    for i in unigrams_sw:
+        random.shuffle(i)
+    for i in unigrams_nsw:
+        random.shuffle(i)
+    for i in bigrams_sw:
+        random.shuffle(i)
+    for i in bigrams_nsw:
+        random.shuffle(i)
+    for i in ub_sw:
+        random.shuffle(i)
+    for i in ub_nsw:
+        random.shuffle(i)
     # Alpha::::::::::
     # alpha suppresses the effect of rare words. For instance, if there is only 1 spam email out of 20 emails
     # in the training set, then without having significant additive smoothing, model will classify the test data/emails 
@@ -321,7 +313,7 @@ def classify(formatted_data):
 
     #unigrams stopwords
 
-    alpha_vals=[0.01,0.1,0.5,1.0,1.5,2.0]
+    alpha_vals=[0.01,0.02,0.05,0.10,0.50,1.0,1.5]
 
     print("---------------------------------unigram stopwords----------------------------------------------")
     val_a=[]

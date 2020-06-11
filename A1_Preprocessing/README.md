@@ -2,7 +2,7 @@
 -------------------------------------------------
 
 # Instructions to run the code:
-From the root of this repository, run `python3 A1_Preprocessing/main.py Reviews/Raw_data` .
+From the root of this repository, run `python3 A1_Preprocessing/main.py data/` .
 
 ____________________________________
 # main.py: 

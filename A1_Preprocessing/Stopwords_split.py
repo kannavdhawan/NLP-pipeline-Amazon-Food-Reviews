@@ -113,7 +113,7 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     print('out_sw--------------')
     print(out_sw[0:10])
 
-    with open(os.path.join('csv_splits/', "out_sw.csv"),'w') as f:
+    with open(os.path.join('data/', "out_sw.csv"),'w') as f:
         for sublist in out_sw:
             for item in sublist:
                 f.write(str(item)+',')
@@ -206,7 +206,7 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     print(out_nsw[0:10])
 
 
-    with open(os.path.join('csv_splits/', "out_nsw.csv"),'w') as f:
+    with open(os.path.join('data/', "out_nsw.csv"),'w') as f:
         for sublist in out_nsw:
             for item in sublist:
                 f.write(str(item)+',')
@@ -295,32 +295,32 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
     # print(test_nsw[38000:])
     # print(test_nsw[-1:-4])
 
-    with open(os.path.join('csv_splits/',"train_sw_labels.csv"),'w') as f:
+    with open(os.path.join('data/',"train_sw_labels.csv"),'w') as f:
         l=[int(1)]*320000+[int(0)]*320000
         for i in l:
             f.write(str(i)+'\n')
-    with open(os.path.join('csv_splits/',"train_nsw_labels.csv"),'w') as f:
+    with open(os.path.join('data/',"train_nsw_labels.csv"),'w') as f:
         k=[int(1)]*320000+[int(0)]*320000
         for i in k:
             f.write(str(i)+'\n')
-    with open(os.path.join('csv_splits/',"val_sw_labels.csv"),'w') as f:
+    with open(os.path.join('data/',"val_sw_labels.csv"),'w') as f:
         m=[int(1)]*40000+[int(0)]*40000
         for i in m:
             f.write(str(i)+'\n')
-    with open(os.path.join('csv_splits/',"val_nsw_labels.csv"),'w') as f:
+    with open(os.path.join('data/',"val_nsw_labels.csv"),'w') as f:
         n=[int(1)]*40000+[int(0)]*40000
         for i in n:
             f.write(str(i)+'\n')
-    with open(os.path.join('csv_splits/',"test_sw_labels.csv"),'w') as f:
+    with open(os.path.join('data/',"test_sw_labels.csv"),'w') as f:
         o=[int(1)]*40000+[int(0)]*40000
         for i in o:
             f.write(str(i)+'\n')
-    with open(os.path.join('csv_splits/',"test_nsw_labels.csv"),'w') as f:
+    with open(os.path.join('data/',"test_nsw_labels.csv"),'w') as f:
         p=[int(1)]*40000+[int(0)]*40000
         for i in p:
             f.write(str(i)+'\n')       
 
-    with open(os.path.join('csv_splits/', "train_sw.csv"),'w') as f:
+    with open(os.path.join('data/', "train_sw.csv"),'w') as f:
         for sublist in train_sw:
             for item in sublist:
                 f.write(str(item)+',')
@@ -328,35 +328,35 @@ def train_val_test(List_with_stopwords,List_without_stopwords):
                 # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
-    with open(os.path.join('csv_splits/', "val_sw.csv"),'w') as f:
+    with open(os.path.join('data/', "val_sw.csv"),'w') as f:
         for sublist in val_sw:
             for item in sublist:
                 f.write(str(item)+',')
                 # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
-    with open(os.path.join('csv_splits/', "test_sw.csv")    ,'w') as f:
+    with open(os.path.join('data/', "test_sw.csv")    ,'w') as f:
         for sublist in test_sw:
             for item in sublist:
                 f.write(str(item)+',')
                 # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
-    with open(os.path.join('csv_splits/', "train_nsw.csv"),'w') as f:
+    with open(os.path.join('data/', "train_nsw.csv"),'w') as f:
         for sublist in train_nsw:
             for item in sublist:
                 f.write(str(item)+',')
                 # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
-    with open(os.path.join('csv_splits/', "val_nsw.csv"),'w') as f:
+    with open(os.path.join('data/', "val_nsw.csv"),'w') as f:
         for sublist in val_nsw:
             for item in sublist:
                 f.write(str(item)+',')
                 # f.write('\''+str(item)+'\''+',')
             f.write('\n')
 
-    with open(os.path.join('csv_splits/', "test_nsw.csv"),'w') as f:
+    with open(os.path.join('data/', "test_nsw.csv"),'w') as f:
         for sublist in test_nsw:
             for item in sublist:
                 f.write(str(item)+',')
