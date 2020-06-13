@@ -226,3 +226,87 @@ unigram+bigram nsw Val acc at alpha= 2.0  is  0.822925
 unigram+bigram nsw val Best accuracy= 0.82445  at alpha= 1.0
 unigram+bigram nsw test accuracy= 0.8238375  at best value of alpha
 ------------------------------------------------------------------------------------------------
+
+
+
+---------------------------------unigram stopwords----------------------------------------------
+Unigram sw Val acc at alpha= 0.01  is  0.8018625
+Unigram sw Val acc at alpha= 0.02  is  0.8029375
+Unigram sw Val acc at alpha= 0.05  is  0.8044875
+Unigram sw Val acc at alpha= 0.1  is  0.8055875
+Unigram sw Val acc at alpha= 0.5  is  0.80715
+Unigram sw Val acc at alpha= 1.0  is  0.8067875
+Unigram sw Val acc at alpha= 1.5  is  0.8062875
+
+
+Unigrams sw val Best accuracy= 0.80715  at alpha= 0.5
+Unigrams sw test accuracy= 0.8052375  at best value of alpha
+------------------------------------------------------------------------------------------------
+---------------------------------unigram No stopwords----------------------------------------------
+Unigram nsw Val acc at alpha= 0.01  is  0.8036375
+Unigram nsw Val acc at alpha= 0.02  is  0.8045125
+Unigram nsw Val acc at alpha= 0.05  is  0.80605
+Unigram nsw Val acc at alpha= 0.1  is  0.8072125
+Unigram nsw Val acc at alpha= 0.5  is  0.80875
+Unigram nsw Val acc at alpha= 1.0  is  0.8084
+Unigram nsw Val acc at alpha= 1.5  is  0.8081375
+
+
+Unigrams nsw val Best accuracy= 0.80875  at alpha= 0.5
+Unigrams nsw test accuracy= 0.80645  at best value of alpha
+------------------------------------------------------------------------------------------------
+---------------------------------Bigram stopwords----------------------------------------------
+Bigram sw Val acc at alpha= 0.01  is  0.8077
+Bigram sw Val acc at alpha= 0.02  is  0.810925
+Bigram sw Val acc at alpha= 0.05  is  0.814725
+Bigram sw Val acc at alpha= 0.1  is  0.8173875
+Bigram sw Val acc at alpha= 0.5  is  0.81995
+Bigram sw Val acc at alpha= 1.0  is  0.818175
+Bigram sw Val acc at alpha= 1.5  is  0.81655
+
+
+Bigrams sw val Best accuracy= 0.81995  at alpha= 0.5
+Bigrams sw test accuracy= 0.8177875  at best value of alpha
+------------------------------------------------------------------------------------------------
+---------------------------------Bigram No stopwords----------------------------------------------
+Bigram nsw Val acc at alpha= 0.01  is  0.7683625
+Bigram nsw Val acc at alpha= 0.02  is  0.7703875
+Bigram nsw Val acc at alpha= 0.05  is  0.7742625
+Bigram nsw Val acc at alpha= 0.1  is  0.7774875
+Bigram nsw Val acc at alpha= 0.5  is  0.7844875
+Bigram nsw Val acc at alpha= 1.0  is  0.784975
+Bigram nsw Val acc at alpha= 1.5  is  0.7842125
+
+
+Bigrams nsw val Best accuracy= 0.784975  at alpha= 1.0
+Bigrams nsw test accuracy= 0.7832625  at best value of alpha
+------------------------------------------------------------------------------------------------
+---------------------------------unigram+bigram stopwords----------------------------------------------
+unigram+bigram sw Val acc at alpha= 0.01  is  0.821675
+unigram+bigram sw Val acc at alpha= 0.02  is  0.823925
+unigram+bigram sw Val acc at alpha= 0.05  is  0.825925
+unigram+bigram sw Val acc at alpha= 0.1  is  0.8280375
+unigram+bigram sw Val acc at alpha= 0.5  is  0.829425
+unigram+bigram sw Val acc at alpha= 1.0  is  0.82755
+
+unigram stopwords: accuracy= 0.8052375  +
+unigram No stopwords: accuracy= 0.80645     
+
+Bigram stopwords: accuracy= 0.8177875   +
+Bigram No stopwords: accuracy= 0.7832625    
+
+unigram+bigram stopwords: accuracy= 0.82655 +
+unigram+bigram No stopwords: accuracy= 0.824325             
+
+
+
+2596 words with don't in test_sw.csv which are removed in test_nsw.csv
+
+<!-- my,iphone,does,feel,protected,and,i,don't,have,to,worry,as,much,about,dropping,my,new,phone. --> pos review
+This is a positive review and I have taken ""don't"" as a stopword. If I remove that stopword,
+the review will tend to become negative. 
+<!-- i,also,like,the,fact,that,i,don't,have,to,worry,about,maintaining,a,fancy,handle. -->--> pos review
+remove don't it will be classified as neg
+<!-- i,don't,see,it,as,a,big,problem,unless,for,some,reason,you,are,in,a,huge,rush. --> pos review
+
+

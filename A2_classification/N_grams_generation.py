@@ -6,70 +6,37 @@ import random
 from sklearn.naive_bayes import MultinomialNB
 from nltk.classify.scikitlearn import SklearnClassifier
 def data_conversion(data_path):
-    # Labeling the TRAIN dataset
-    train_sw=pd.read_csv(os.path.join(data_path, "train_sw.csv"),sep=';',header=None)
-    L1_train=pd.Series([int(1)]*320000)
-    L0_train=pd.Series([int(0)]*320000)
-    train_labels=pd.concat([L1_train,L0_train],ignore_index=True)
-    train_sw['label']=train_labels
-    train_sw.columns = ['Text', 'Labels']
-    # print(train_labels.iloc[319999:320002])
-    # Labeling the TRAIN NSW dataset
-    train_nsw=pd.read_csv(os.path.join(data_path, "train_nsw.csv"),sep=';',header=None)
-    train_nsw['label']=train_labels
-    train_nsw.columns = ['Text', 'Labels']
-    print(train_sw.info())
-
-    # Labeling the VAL dataset
-    val_sw=pd.read_csv(os.path.join(data_path, "val_sw.csv"),sep=';',header=None)
-
-    L1_val=pd.Series([int(1)]*40000)
-    L0_val=pd.Series([int(0)]*40000)
-    val_labels=pd.concat([L1_val,L0_val],ignore_index=True)
-    val_sw['label']=val_labels
-    val_sw.columns = ['Text', 'Labels']
-    # Labeling the VAL NSW dataset
-    val_nsw=pd.read_csv(os.path.join(data_path, "val_nsw.csv"),sep=';',header=None)
-    val_nsw['label']=val_labels
-    val_nsw.columns = ['Text', 'Labels']
-    print(val_sw.info())
-
-
-    # Labeling the TEST dataset
-    test_sw=pd.read_csv(os.path.join(data_path, "test_sw.csv"),sep=';',header=None)
-
-    L1_test=pd.Series([int(1)]*40000)
-    L0_test=pd.Series([int(0)]*40000)
-    test_labels=pd.concat([L1_test,L0_test],ignore_index=True)
-    test_sw['label']=test_labels
-    test_sw.columns = ['Text', 'Labels']
-    # Labeling the TEST NSW dataset
-    test_nsw=pd.read_csv(os.path.join(data_path, "test_nsw.csv"),sep=';',header=None)
-    test_nsw['label']=test_labels
-    test_nsw.columns = ['Text', 'Labels']
+    train_sw=pd.read_csv(os.path.join(data_path, "train_sw.csv"),sep=';',header=None,names=['Text'])
+    train_nsw=pd.read_csv(os.path.join(data_path, "train_nsw.csv"),sep=';',header=None,names=['Text'])
+    val_sw=pd.read_csv(os.path.join(data_path, "val_sw.csv"),sep=';',header=None,names=['Text'])
+    val_nsw=pd.read_csv(os.path.join(data_path, "val_nsw.csv"),sep=';',header=None,names=['Text'])
+    test_sw=pd.read_csv(os.path.join(data_path, "test_sw.csv"),sep=';',header=None,names=['Text'])
+    test_nsw=pd.read_csv(os.path.join(data_path, "test_nsw.csv"),sep=';',header=None,names=['Text'])
+    print(train_sw.head())
     print(test_sw.info())
     print("train sw :")
     print(train_sw.head(3))
-    # Converting into list of list without labels 
-    #-------------FOLLOWING CODE CAN BE USED IF CSV CONTAINS STRINGS IN THE FORM OF '' .
-    # will not work because of words like didn't leave t outside the two strings
+    
+    #-------------FOLLOWING CODE CAN BE USED IF CSV CONTAINS STRINGS IN THE FORM OF '' -----------------------.
+        
     # for i in range(len(train_sw['Text'])):
     #     train_sw_list.append(list(eval(train_sw.iloc[i,0])))
     # print(train_sw_list[0:5])
     # train_sw_list.append(eval('['+train_sw.iloc[20,0]+']'))
     # print(train_sw_list)
 
-
-    # Extarcting training data into list of list
+    # Converting into list of list without labels
+    
+    # Extracting training data into list of list
+    
     temp_train_sw=[]
     train_sw_list=[]
     for i in range(len(train_sw)):
         temp_train_sw=(train_sw.iloc[i,0])[:-1].split(',') # -1 because of extra comma added using csv creation.
         train_sw_list.append(temp_train_sw)
-        # print((train_sw.iloc[i,0])[:-1]) # slicing and removing extra comma which can be simply removed using eval otherwise. 
-        # print(temp_train_sw)
     print(train_sw_list[0:10])
     print(len(train_sw_list))
+
     temp_train_nsw=[]
     train_nsw_list=[]
     for i in range(len(train_nsw)):
@@ -77,8 +44,6 @@ def data_conversion(data_path):
         train_nsw_list.append(temp_train_nsw)
     print(train_nsw_list[0:10])
     print(len(train_nsw_list))
-
-
 
     # Extarcting validation data into list of list 
     temp_val_sw=[]
@@ -113,9 +78,11 @@ def data_conversion(data_path):
         test_nsw_list.append(temp_test_nsw)
     print(test_nsw_list[0:10])
     print(len(test_nsw_list))
+    
     return train_sw_list,train_nsw_list,val_sw_list,val_nsw_list,test_sw_list,test_nsw_list #list of lists 
-# uncomment below_________________________-----------------------------------______________________________-
-# GENERATING N GRAMS 
+
+# GENERATING N GRAMS
+
 def n_grams(input_set,n):
     gram_list=[]
     for i in range(len(input_set)):
@@ -133,7 +100,7 @@ def n_gram_generation(input_lists):
     test_sw_list=input_lists[4]
     test_nsw_list=input_lists[5]
 #unigrams
-    u=1                                                                # stopwords set-1 
+    u=1                                                                # stopwords set-1
     unigram_train_sw=n_grams(train_sw_list,u)
     unigram_val_sw=n_grams(val_sw_list,u)
     unigram_test_sw=n_grams(test_sw_list,u)
@@ -190,7 +157,8 @@ def n_gram_generation(input_lists):
     print("testing uni+bi::")
     print(ub_test_nsw[:5])
     return unigram_train_sw,unigram_val_sw,unigram_test_sw,unigram_train_nsw,unigram_val_nsw,unigram_test_nsw,bigrams_train_sw,bigrams_val_sw,bigrams_test_sw,bigrams_train_nsw,bigrams_val_nsw,bigrams_test_nsw,ub_train_sw,ub_val_sw,ub_test_sw,ub_train_nsw,ub_val_nsw,ub_test_nsw
-
+x=1
+y=0
 
 # def dic(j):
 #     return dict([(word, True) for word in j]) # returns dictionary
@@ -215,9 +183,9 @@ def data_formatting(input_gram,length):
         for j in range(len(input_gram[i])):
             temp_dictionary[input_gram[i][j]]=True # making it always true for every word to preserve all the details.
         if i<length:
-            temp.append((temp_dictionary,1))
+            temp.append((temp_dictionary,x))
         else:
-            temp.append((temp_dictionary,0))
+            temp.append((temp_dictionary,y))
     return temp
 
 #[({"hello":True,},1),()]
@@ -245,7 +213,6 @@ def formatted_data_generation(gram_list):
     ub_val_nsw=gram_list[16]
     ub_test_nsw=gram_list[17]
     x=2
-    print("1")
     unigram_train_sw_final=data_formatting(unigram_train_sw,len(unigram_train_sw)/2)
     unigram_val_sw_final=data_formatting(unigram_val_sw,len(unigram_val_sw)/2)
     unigram_test_sw_final=data_formatting(unigram_test_sw,len(unigram_test_sw)/2)
@@ -261,9 +228,9 @@ def formatted_data_generation(gram_list):
     ub_train_sw_final=data_formatting(ub_train_sw,len(ub_train_sw)/2)
     ub_val_sw_final=data_formatting(ub_val_sw,len(ub_val_sw)/2)
     ub_test_sw_final=data_formatting(ub_test_sw,len(ub_test_sw)/2)
-    ub_train_nsw_final=data_formatting(ub_train_nsw,len(ub_train_nsw))
-    ub_val_nsw_final=data_formatting(ub_val_nsw,len(ub_val_nsw))
-    ub_test_nsw_final=data_formatting(ub_test_nsw,len(ub_test_nsw))
+    ub_train_nsw_final=data_formatting(ub_train_nsw,len(ub_train_nsw)/2)
+    ub_val_nsw_final=data_formatting(ub_val_nsw,len(ub_val_nsw)/2)
+    ub_test_nsw_final=data_formatting(ub_test_nsw,len(ub_test_nsw)/2)
     return unigram_train_sw_final,unigram_val_sw_final,unigram_test_sw_final,unigram_train_nsw_final,unigram_val_nsw_final,unigram_test_nsw_final,bigrams_train_sw_final,bigrams_val_sw_final,bigrams_test_sw_final,bigrams_train_nsw_final,bigrams_val_nsw_final,bigrams_test_nsw_final,ub_train_sw_final,ub_val_sw_final,ub_test_sw_final,ub_train_nsw_final,ub_val_nsw_final,ub_test_nsw_final
 # classification 
 def classify(formatted_data):
@@ -312,8 +279,7 @@ def classify(formatted_data):
     # as spam if that word is there in any of the email.
 
     #unigrams stopwords
-
-    alpha_vals=[0.01,0.02,0.05,0.10,0.50,1.0,1.5]
+    alpha_vals=[0.1,0.4,0.5,1.0,1.5]
 
     print("---------------------------------unigram stopwords----------------------------------------------")
     val_a=[]

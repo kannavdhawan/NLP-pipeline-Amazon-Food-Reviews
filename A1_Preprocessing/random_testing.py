@@ -138,5 +138,12 @@
 # x=[thing for thing in list_of_things]
 # print(x)
 
+# import nltk
+
+# from nltk.corpus import stopwords
+# nltk.download('stopwords')
+# print(stopwords.words('english'))
+
+
 
 
