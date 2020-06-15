@@ -73,7 +73,6 @@ References:
 #####   return self -->
 
 # Results:
-
 ### Test set Accuracy:
 | stopwords Removed  | Text features | Accuracy(Test set)|
 | ------------------ | ------------- |-------------------|
@@ -86,10 +85,11 @@ References:
 
 __________________________________________________________
 ### Validation set Accuracy:
-    Hyperparameter tuning with best resulted hyperparameter(alpha), alpha: additive smoothing to supress the effect of rare words. 
+    Hyperparameter tuning with best resulted hyperparameter(alpha), alpha: additive smoothing to supress the effect 
+    of rare words. 
     For instance:
-    If there is only 1 spam email out of 20 emails in the training set, then without having significant additive smoothing, model will classify the test data/emails as spam if that word 
-    contributing to real spam email is there in any of the email.
+    If there is only 1 neg review out of 20 reviews in the training set, then without having significant additive smoothing,
+    model will classify the test data as negative if that word contributing to negative review is there in any of the rveiew.
 
 | stopwords Removed  | Text features | Accuracy(Val set) |  alpha(Best) |
 | ------------------ | ------------- |-------------------|--------------|
