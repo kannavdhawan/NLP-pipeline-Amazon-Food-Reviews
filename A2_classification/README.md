@@ -88,9 +88,9 @@ __________________________________________________________
     Hyperparameter tuning with best resulted hyperparameter(alpha), alpha: additive smoothing to supress the effect 
     of rare words. 
     For instance:
-        If there is only 1 neg review out of 20 reviews in the training set, then without having significant additive
-        smoothing, model will classify the test data as negative if that word contributing to negative review is there
-        in any of the rveiew.
+        If there is only 1 neg review out of 20 reviews in the training set, then without having
+        significant additive smoothing, model will classify the test data as negative if that word
+        contributing to negative review is there in any of the rveiew.
 
 | stopwords Removed  | Text features | Accuracy(Val set) |  alpha(Best) |
 | ------------------ | ------------- |-------------------|--------------|
@@ -102,6 +102,15 @@ __________________________________________________________
 |        No          |    uni+bi     |       83.00%      |      0.4     |
 ________________________________________________________________________
 
+# Analysis: 
+- Performance comparison:  with and without stopwords:  
+    - Overall in my case, Models trained with stopwords performed better than models without stopwords by a small difference in Accuracy of 0.30 in uni+bi and 
+      a difference of 3.43% in bigrams with an exception of unigrams where the model without stopwords outperforms the one without stopwords by a negligible 
+      accuracy of 0.12%. 
+    - 
+    - 
+    - 
+
 
 
 2596 words with don't in test_sw.csv which are removed in test_nsw.csv
@@ -112,5 +121,3 @@ the review will tend to become negative.
 <!-- i,also,like,the,fact,that,i,don't,have,to,worry,about,maintaining,a,fancy,handle. -->--> pos review
 remove don't it will be classified as neg
 <!-- i,don't,see,it,as,a,big,problem,unless,for,some,reason,you,are,in,a,huge,rush. --> pos review
-
-
