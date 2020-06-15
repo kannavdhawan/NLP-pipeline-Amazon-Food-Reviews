@@ -88,9 +88,9 @@ __________________________________________________________
     Hyperparameter tuning with best resulted hyperparameter(alpha), alpha: additive smoothing to supress the effect 
     of rare words. 
     For instance:
-    If there is only 1 neg review out of 20 reviews in the training set, then without having significant additive
-    smoothing, model will classify the test data as negative if that word contributing to negative review is there
-    in any of the rveiew.
+        If there is only 1 neg review out of 20 reviews in the training set, then without having significant additive
+        smoothing, model will classify the test data as negative if that word contributing to negative review is there
+        in any of the rveiew.
 
 | stopwords Removed  | Text features | Accuracy(Val set) |  alpha(Best) |
 | ------------------ | ------------- |-------------------|--------------|
