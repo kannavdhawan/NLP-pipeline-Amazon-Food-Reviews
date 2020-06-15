@@ -9,7 +9,8 @@ References:
 ### 2. https://medium.com/@theflyingmantis/text-classification-in-nlp-naive-bayes-a606bf419f8c
 ### 3. https://en.wikipedia.org/wiki/Multinomial_distribution
 https://towardsdatascience.com/why-you-should-avoid-removing-stopwords-aa7a353d2a52
-
+https://scikit-learn.org/stable/modules/feature_extraction.html
+https://datascience.stackexchange.com/questions/31048/pros-cons-of-stop-word-removal#:~:text=If%20you%20are%20using%20some,won't%20drive%20your%20analysis.
 ##### https://stackoverflow.com/questions/29139350/difference-between-ziplist-and-ziplist/29139418
 
 ##### http://www.sfs.uni-tuebingen.de/~keberle/NLPTools/presentations/NLTK/NLTK_Classifiers.pdf
@@ -116,4 +117,14 @@ stopwords outperforms the one with stopwords by a negligible accuracy of +0.12%.
     - Thus, our accuracy with stopwords> without stopwords because valence/context is getting affected after removing SW.
 - Particularly, in bigrams the accuracy difference(SW and n_SW) is huge(3.43%) because the same SW's words are contributing twice at each "nth" token in a review as compared to
  unigrams and in unigrams+bigrams.
+### Performance comparison:  unigrams, bigrams, unigrams+bigrams:
+- Accuracy(unigrams+bigrams)>Accuracy(bigrams)>Accuracy(unigrams) | with stopwords.
+    - {unigrams + bigrams} are preserving more information than the others and making the feature vector larger in size as well, so with an increase in the accuracy, we are compromising with the space and time complexity.
+- Accuracy(unigrams+bigrams)>Accuracy(unigrams)>Accuracy(bigrams) | without stopwords. 
+    - Reason being the same as above comparison, absence of useful words in multiple tokens leading to less accuracy in this set for bigrams.
+    - As long as we are increasing the N_grams, accuracy is decreasing(If previous ((N-1) to 1) grams are not included).
+- Overall, 
+    - If only non essential stopwords are removed(based on the dataset), Accuracy(unigrams+bigrams)>Accuracy(bigrams)>Accuracy(unigrams) for both the sets.
 
+
+ 
