@@ -1,4 +1,12 @@
 # GENERATING N GRAMS
+
+
+'''
+:param labeled_featuresets: A list of ``(featureset, label)``
+            where each ``featureset`` is a dict mapping strings to either
+            numbers, booleans or strings.
+'''
+
 def n_grams(input_set,n):
     gram_list=[]
     for i in range(len(input_set)):
@@ -8,6 +16,7 @@ def n_grams(input_set,n):
         for inner in range(len(gram_list[outer])):
             gram_list[outer][inner]=" ".join(gram_list[outer][inner]) #The join() method takes all items in an iterable and joins them into one string.
     return gram_list
+
 def n_gram_generation(input_lists):
     train_sw_list=input_lists[0]
     train_nsw_list=input_lists[1]

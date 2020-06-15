@@ -52,14 +52,19 @@ stopwords outperforms the one with stopwords by a negligible accuracy of +0.12%.
 - Overall, 
     - If only non essential stopwords are removed(based on the dataset), Accuracy(unigrams+bigrams)>Accuracy(bigrams)>Accuracy(unigrams) for both the sets.
 
+##### Note: For method followed, please refer commented parts in Readme and .py files.Thanks.
 ### Citations for libraries used in code:
-1. https://stackoverflow.com/questions/25155940/nltk-naivebayesclassifier-input-formatting
-2. https://www.nltk.org/_modules/nltk/classify/scikitlearn.html
+1. https://www.nltk.org/_modules/nltk/classify/scikitlearn.html 
+2. https://scikit-learn.org/stable/modules/feature_extraction.html
 3. https://towardsdatascience.com/why-you-should-avoid-removing-stopwords-aa7a353d2a52
-4. https://scikit-learn.org/stable/modules/feature_extraction.html
+4. https://stackoverflow.com/questions/25155940/nltk-naivebayesclassifier-input-formatting
 5. http://www.sfs.uni-tuebingen.de/~keberle/NLPTools/presentations/NLTK/NLTK_Classifiers.pdf
 
-
+<!-- SklearnClassifier using Nltk -->
+<!-- 
+ #1. uses zip for format provided i.e [({"hello":True},1),(),()] 
+ #2. calls the dict vectorizer through train.
+ #3. Then we feed it with sklearn's mnb classifier -->
 <!-- 
 Naive Bayes classifier follows the conditional independence of each of the features in the model, while Multinomial NB classifier is a specific instance of a NB classifier which uses a multinomial distribution for each of the features.
  
@@ -75,8 +80,10 @@ http://www.sfs.uni-tuebingen.de/~keberle/NLPTools/presentations/NLTK/NLTK_Classi
 
 nltk's nltk.classify.scikitlearn accepts vectorized dictionary which can either be a  feature vector with 
 with most common words for keys and booleans as values. Or It can also be just the words from the ith 
-reviews with True values.  --> -->
+reviews with True values.  --> 
 <!-- 
+Package defined by nltk which takes sklearn classifier 
+
 ##### class SklearnClassifier(ClassifierI):
 ##### 
 
@@ -120,7 +127,7 @@ reviews with True values.  --> -->
       
 #####   """
 
-      
+
 #####   X, y = list(zip(*labeled_featuresets))
       
 #####   X = self._vectorizer.fit_transform(X)
@@ -129,6 +136,6 @@ reviews with True values.  --> -->
       
 #####   self._clf.fit(X, y)
  
-#####   return self --> -->
+#####   return self --> 
 
  

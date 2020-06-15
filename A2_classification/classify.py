@@ -8,6 +8,13 @@ from sklearn.naive_bayes import MultinomialNB
 from nltk.classify.scikitlearn import SklearnClassifier
 import pickle
 # classification 
+
+
+# <!-- SklearnClassifier using Nltk -->
+# <!-- 
+ #1. uses zip for format provided i.e [({"hello":True},1),(),()] 
+ #2. calls the dict vectorizer through train.
+ #3. Then we feed it with sklearn's mnb classifier -->
 def classify(formatted_data):
     unigram_train_sw_final=formatted_data[0]
     unigram_val_sw_final=formatted_data[1]
@@ -68,7 +75,7 @@ def classify(formatted_data):
     print("Unigrams sw val Best accuracy=",max(val_a)," at alpha=",alpha_vals[val_a.index(max(val_a))])
     MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
     mnb_uni=MNB_classifier.train(unigrams_sw[0])
-    pickle.dump(mnb_uni,open(os.path.join("data/","mnb_uni.pkl"),"wb"))
+    # pickle.dump(mnb_uni,open(os.path.join("data/","mnb_uni.pkl"),"wb"))
 
     print("Unigrams sw test accuracy=",nltk.classify.accuracy(MNB_classifier,unigrams_sw[2])," at best value of alpha")
     print("------------------------------------------------------------------------------------------------")
@@ -86,7 +93,7 @@ def classify(formatted_data):
 
     MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
     mnb_uni_ns=MNB_classifier.train(unigrams_nsw[0])
-    pickle.dump(mnb_uni_ns,open(os.path.join("data/","mnb_uni_ns.pkl"),"wb"))
+    # pickle.dump(mnb_uni_ns,open(os.path.join("data/","mnb_uni_ns.pkl"),"wb"))
 
     print("Unigrams nsw test accuracy=",nltk.classify.accuracy(MNB_classifier,unigrams_nsw[2])," at best value of alpha")
     print("------------------------------------------------------------------------------------------------")
@@ -104,7 +111,7 @@ def classify(formatted_data):
 
     MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
     mnb_bi=MNB_classifier.train(bigrams_sw[0])
-    pickle.dump(mnb_bi,open(os.path.join("data/","mnb_bi.pkl"),"wb"))
+    # pickle.dump(mnb_bi,open(os.path.join("data/","mnb_bi.pkl"),"wb"))
     print("Bigrams sw test accuracy=",nltk.classify.accuracy(MNB_classifier,bigrams_sw[2])," at best value of alpha")
     print("------------------------------------------------------------------------------------------------")
 
@@ -121,7 +128,7 @@ def classify(formatted_data):
 
     MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
     mnb_bi_ns=MNB_classifier.train(bigrams_nsw[0])
-    pickle.dump(mnb_bi_ns,open(os.path.join("data/","mnb_bi_ns.pkl"),"wb"))
+    # pickle.dump(mnb_bi_ns,open(os.path.join("data/","mnb_bi_ns.pkl"),"wb"))
     print("Bigrams nsw test accuracy=",nltk.classify.accuracy(MNB_classifier,bigrams_nsw[2])," at best value of alpha")
     print("------------------------------------------------------------------------------------------------")
 
@@ -139,7 +146,7 @@ def classify(formatted_data):
 
     MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
     mnb_uni_bi=MNB_classifier.train(ub_sw[0])
-    pickle.dump(mnb_uni_bi,open(os.path.join("data/","mnb_uni_bi.pkl"),"wb"))
+    # pickle.dump(mnb_uni_bi,open(os.path.join("data/","mnb_uni_bi.pkl"),"wb"))
     print("unigram+bigram sw test accuracy=",nltk.classify.accuracy(MNB_classifier,ub_sw[2])," at best value of alpha")
     print("------------------------------------------------------------------------------------------------")
 
@@ -157,6 +164,6 @@ def classify(formatted_data):
 
     MNB_classifier = SklearnClassifier(MultinomialNB(alpha=alpha_vals[val_a.index(max(val_a))], fit_prior=True, class_prior=None))
     mnb_uni_bi_ns=MNB_classifier.train(ub_nsw[0])
-    pickle.dump(mnb_uni_bi_ns,open(os.path.join("data/","mnb_uni_bi_ns.pkl"),"wb"))
+    # pickle.dump(mnb_uni_bi_ns,open(os.path.join("data/","mnb_uni_bi_ns.pkl"),"wb"))
     print("unigram+bigram nsw test accuracy=",nltk.classify.accuracy(MNB_classifier,ub_nsw[2])," at best value of alpha")
     print("------------------------------------------------------------------------------------------------")
