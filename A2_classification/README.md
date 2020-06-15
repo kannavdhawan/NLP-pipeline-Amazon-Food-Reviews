@@ -104,9 +104,7 @@ ________________________________________________________________________
 
 # Analysis: 
 - Performance comparison:  with and without stopwords:  
-    - Overall in my case, Models trained with stopwords performed better than models without stopwords by a small difference in Accuracy of 0.30 in uni+bi and 
-      a difference of 3.43% in bigrams with an exception of unigrams where the model without stopwords outperforms the one without stopwords by a negligible 
-      accuracy of 0.12%. 
+    - Overall in my case, Models trained with stopwords performed better than models without stopwords by a small difference in Accuracy of 0.30 in uni+bi and a difference of 3.43% in bigrams with an exception of unigrams where the model without stopwords outperforms the one without stopwords by a negligible accuracy of 0.12%. 
     - 
     - 
     - 
