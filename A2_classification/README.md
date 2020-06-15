@@ -1,4 +1,4 @@
-##### https://stackoverflow.com/questions/25155940/nltk-naivebayesclassifier-input-formatting
+<!-- ##### https://stackoverflow.com/questions/25155940/nltk-naivebayesclassifier-input-formatting
 ##### https://www.nltk.org/_modules/nltk/classify/scikitlearn.html
 
 ###### Naive Bayes classifier follows the conditional independence of each of the features in the model, while Multinomial NB classifier is a specific instance of a NB classifier which uses a multinomial distribution for each of the features.
@@ -70,14 +70,13 @@ References:
       
 #####   self._clf.fit(X, y)
  
-#####   return self
+#####   return self -->
 
+#                                                                Report 
 
-
-
-
-
-
+# Results: 
+__________________________________________________________
+### Test set Accuracy:
 | stopwords Removed  | Text features | Accuracy(Test set)|
 | ------------------ | ------------- |-------------------|
 |        Yes         |    unigrams   |       80.64%      | 
@@ -85,75 +84,25 @@ References:
 |        Yes         |    uni+bi     |       82.43%      | 
 |        No          |    unigrams   |       80.52%      | 
 |        No          |    bigrams    |       81.75%      | 
-|        No          |    uni+bi     |       82.71%      | 
+|        No          |    uni+bi     |       82.71%      |
 
-outputs:
+__________________________________________________________
+### Validation set Accuracy:
+    Hyperparameter tuning with best resulted hyperparameter(alpha), alpha: additive smoothing to supress the effect of rare words. 
+    For instance:
+    If there is only 1 spam email out of 20 emails in the training set, then without having significant additive smoothing, model will classify the test data/emails as spam if that word 
+    contributing to real spam email is there in any of the email.
 
----------------------------------unigram stopwords----------------------------------------------
-Unigram sw Val acc at alpha= 0.1  is  0.8055875
-Unigram sw Val acc at alpha= 0.4  is  0.8069625
-Unigram sw Val acc at alpha= 0.5  is  0.80715
-Unigram sw Val acc at alpha= 1.0  is  0.8067875
-Unigram sw Val acc at alpha= 1.5  is  0.8062875
+| stopwords Removed  | Text features | Accuracy(Val set) |  alpha(Best) |
+| ------------------ | ------------- |-------------------|--------------|
+|        Yes         |    unigrams   |       80.87%      |      0.5     |
+|        Yes         |    bigrams    |       78.49%      |      1.0     |
+|        Yes         |    uni+bi     |       82.64%      |      1.0     |
+|        No          |    unigrams   |       80.71%      |      0.5     |
+|        No          |    bigrams    |       82.03%      |      0.4     |
+|        No          |    uni+bi     |       83.00%      |      0.4     |
+________________________________________________________________________
 
-Unigrams sw val Best accuracy= 0.80715  at alpha= 0.5
-Unigrams sw test accuracy= 0.8052375  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------unigram No stopwords----------------------------------------------
-Unigram nsw Val acc at alpha= 0.1  is  0.8072125
-Unigram nsw Val acc at alpha= 0.4  is  0.8085875
-Unigram nsw Val acc at alpha= 0.5  is  0.80875
-Unigram nsw Val acc at alpha= 1.0  is  0.8084
-Unigram nsw Val acc at alpha= 1.5  is  0.8081375
-
-Unigrams nsw val Best accuracy= 0.80875  at alpha= 0.5
-Unigrams nsw test accuracy= 0.80645  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------Bigram stopwords----------------------------------------------
-Bigram sw Val acc at alpha= 0.1  is  0.8173875
-Bigram sw Val acc at alpha= 0.4  is  0.8203375
-Bigram sw Val acc at alpha= 0.5  is  0.81995
-Bigram sw Val acc at alpha= 1.0  is  0.818175
-Bigram sw Val acc at alpha= 1.5  is  0.81655
-
-
-Bigrams sw val Best accuracy= 0.8203375  at alpha= 0.4
-Bigrams sw test accuracy= 0.8175625  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------Bigram No stopwords----------------------------------------------
-Bigram nsw Val acc at alpha= 0.1  is  0.7774875
-Bigram nsw Val acc at alpha= 0.4  is  0.7839375
-Bigram nsw Val acc at alpha= 0.5  is  0.7844875
-Bigram nsw Val acc at alpha= 1.0  is  0.784975
-Bigram nsw Val acc at alpha= 1.5  is  0.7842125
-
-
-Bigrams nsw val Best accuracy= 0.784975  at alpha= 1.0
-Bigrams nsw test accuracy= 0.7832625  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------unigram+bigram stopwords----------------------------------------------
-unigram+bigram sw Val acc at alpha= 0.1  is  0.8280375
-unigram+bigram sw Val acc at alpha= 0.4  is  0.8299
-unigram+bigram sw Val acc at alpha= 0.5  is  0.829425
-unigram+bigram sw Val acc at alpha= 1.0  is  0.82755
-unigram+bigram sw Val acc at alpha= 1.5  is  0.8261
-
-
-unigram+bigram sw val Best accuracy= 0.8299  at alpha= 0.4
-unigram+bigram sw test accuracy= 0.8271  at best value of alpha
-------------------------------------------------------------------------------------------------
-
----------------------------------unigram+bigram No stopwords----------------------------------------------
-unigram+bigram nsw Val acc at alpha= 0.1  is  0.820075
-unigram+bigram nsw Val acc at alpha= 0.4  is  0.8256875
-unigram+bigram nsw Val acc at alpha= 0.5  is  0.825575
-unigram+bigram nsw Val acc at alpha= 1.0  is  0.826475
-unigram+bigram nsw Val acc at alpha= 1.5  is  0.8256125
-
-
-unigram+bigram nsw val Best accuracy= 0.826475  at alpha= 1.0
-unigram+bigram nsw test accuracy= 0.824325  at best value of alpha
-------------------------------------------------------------------------------------------------
 
 
 2596 words with don't in test_sw.csv which are removed in test_nsw.csv
