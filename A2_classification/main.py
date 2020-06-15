@@ -4,7 +4,7 @@ import sys
 from preprocess_csv import data_conversion
 from n_grams_generation import n_gram_generation
 from format_data import formatted_data_generation
-from N_grams_generation import classify
+from classify import classify
 def main(data_path):
     lists=data_conversion(data_path) # returns list of lists without labels. 
     gram_lists=n_gram_generation(lists) # list of list of grams unigram,bigram,uni+bi

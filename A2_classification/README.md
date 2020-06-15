@@ -69,210 +69,60 @@ References:
 #####   y = self._encoder.fit_transform(y)
       
 #####   self._clf.fit(X, y)
-
-      
+ 
 #####   return self
 
 
+
+
+
+
+
+| stopwords Removed  | Text features | Accuracy(Test set)|
+| ------------------ | ------------- |-------------------|
+|        Yes         |    unigrams   |       80.64%      | 
+|        Yes         |    bigrams    |       78.32%      | 
+|        Yes         |    uni+bi     |       82.43%      | 
+|        No          |    unigrams   |       80.52%      | 
+|        No          |    bigrams    |       81.75%      | 
+|        No          |    uni+bi     |       82.71%      | 
+
 outputs:
 
-
 ---------------------------------unigram stopwords----------------------------------------------
-Unigram sw Val acc at alpha= 0.01  is  0.80365
-Unigram sw Val acc at alpha= 0.1  is  0.806725
-Unigram sw Val acc at alpha= 0.5  is  0.8086
-Unigram sw Val acc at alpha= 1.0  is  0.808375
-Unigram sw Val acc at alpha= 1.5  is  0.80815
-Unigram sw Val acc at alpha= 2.0  is  0.807925
-
-
-Unigrams sw val Best accuracy= 0.8086  at alpha= 0.5
-Unigrams sw test accuracy= 0.8078125  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------unigram No stopwords----------------------------------------------
-Unigram nsw Val acc at alpha= 0.01  is  0.8013
-Unigram nsw Val acc at alpha= 0.1  is  0.80455
-Unigram nsw Val acc at alpha= 0.5  is  0.806825
-Unigram nsw Val acc at alpha= 1.0  is  0.8068125
-Unigram nsw Val acc at alpha= 1.5  is  0.8064
-Unigram nsw Val acc at alpha= 2.0  is  0.806075
-
-
-Unigrams nsw val Best accuracy= 0.806825  at alpha= 0.5
-Unigrams nsw test accuracy= 0.8088875  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------Bigram stopwords----------------------------------------------
-Bigram sw Val acc at alpha= 0.01  is  0.80835
-Bigram sw Val acc at alpha= 0.1  is  0.8182625
-Bigram sw Val acc at alpha= 0.5  is  0.821
-Bigram sw Val acc at alpha= 1.0  is  0.8194625
-Bigram sw Val acc at alpha= 1.5  is  0.817475
-Bigram sw Val acc at alpha= 2.0  is  0.8156125
-
-
-Bigrams sw val Best accuracy= 0.821  at alpha= 0.5
-Bigrams sw test accuracy= 0.8215  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------Bigram No stopwords----------------------------------------------
-Bigram nsw Val acc at alpha= 0.01  is  0.7704
-Bigram nsw Val acc at alpha= 0.1  is  0.778525
-Bigram nsw Val acc at alpha= 0.5  is  0.785725
-Bigram nsw Val acc at alpha= 1.0  is  0.784525
-Bigram nsw Val acc at alpha= 1.5  is  0.78425
-Bigram nsw Val acc at alpha= 2.0  is  0.7833375
-
-
-Bigrams nsw val Best accuracy= 0.785725  at alpha= 0.5
-Bigrams nsw test accuracy= 0.785275  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------unigram+bigram stopwords----------------------------------------------
-unigram+bigram sw Val acc at alpha= 0.01  is  0.82335
-unigram+bigram sw Val acc at alpha= 0.1  is  0.8303125
-unigram+bigram sw Val acc at alpha= 0.5  is  0.8310875
-unigram+bigram sw Val acc at alpha= 1.0  is  0.8298
-unigram+bigram sw Val acc at alpha= 1.5  is  0.8281
-unigram+bigram sw Val acc at alpha= 2.0  is  0.8267375
-
-
-unigram+bigram sw val Best accuracy= 0.8310875  at alpha= 0.5
-unigram+bigram sw test accuracy= 0.8317625  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------unigram+bigram No stopwords----------------------------------------------
-unigram+bigram nsw Val acc at alpha= 0.01  is  0.807425
-unigram+bigram nsw Val acc at alpha= 0.1  is  0.818075
-unigram+bigram nsw Val acc at alpha= 0.5  is  0.8229875
-unigram+bigram nsw Val acc at alpha= 1.0  is  0.8237
-unigram+bigram nsw Val acc at alpha= 1.5  is  0.8231
-unigram+bigram nsw Val acc at alpha= 2.0  is  0.8226875
-
-
-unigram+bigram nsw val Best accuracy= 0.8237  at alpha= 1.0
-unigram+bigram nsw test accuracy= 0.826275  at best value of alpha
-
-----------------------------------------------------------------------------------------------
-
-
-
-
----------------------------------unigram stopwords----------------------------------------------
-Unigram sw Val acc at alpha= 0.01  is  0.8020375
-Unigram sw Val acc at alpha= 0.1  is  0.805575
-Unigram sw Val acc at alpha= 0.5  is  0.8069125
-Unigram sw Val acc at alpha= 1.0  is  0.8069375
-Unigram sw Val acc at alpha= 1.5  is  0.806075
-Unigram sw Val acc at alpha= 2.0  is  0.80575
-
-
-Unigrams sw val Best accuracy= 0.8069375  at alpha= 1.0
-Unigrams sw test accuracy= 0.803775  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------unigram No stopwords----------------------------------------------
-Unigram nsw Val acc at alpha= 0.01  is  0.80225
-Unigram nsw Val acc at alpha= 0.1  is  0.8051125
-Unigram nsw Val acc at alpha= 0.5  is  0.8061
-Unigram nsw Val acc at alpha= 1.0  is  0.805925
-Unigram nsw Val acc at alpha= 1.5  is  0.8052125
-Unigram nsw Val acc at alpha= 2.0  is  0.8049375
-
-
-Unigrams nsw val Best accuracy= 0.8061  at alpha= 0.5
-Unigrams nsw test accuracy= 0.8065875  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------Bigram stopwords----------------------------------------------
-Bigram sw Val acc at alpha= 0.01  is  0.8087625
-Bigram sw Val acc at alpha= 0.1  is  0.818525
-Bigram sw Val acc at alpha= 0.5  is  0.820275
-Bigram sw Val acc at alpha= 1.0  is  0.8184625
-Bigram sw Val acc at alpha= 1.5  is  0.8164375
-Bigram sw Val acc at alpha= 2.0  is  0.8146
-
-
-Bigrams sw val Best accuracy= 0.820275  at alpha= 0.5
-Bigrams sw test accuracy= 0.8190625  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------Bigram No stopwords----------------------------------------------
-Bigram nsw Val acc at alpha= 0.01  is  0.7688625
-Bigram nsw Val acc at alpha= 0.1  is  0.7784625
-Bigram nsw Val acc at alpha= 0.5  is  0.78445
-Bigram nsw Val acc at alpha= 1.0  is  0.7844875
-Bigram nsw Val acc at alpha= 1.5  is  0.7838875
-Bigram nsw Val acc at alpha= 2.0  is  0.7822375
-
-
-Bigrams nsw val Best accuracy= 0.7844875  at alpha= 1.0
-Bigrams nsw test accuracy= 0.783425  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------unigram+bigram stopwords----------------------------------------------
-unigram+bigram sw Val acc at alpha= 0.01  is  0.822575
-unigram+bigram sw Val acc at alpha= 0.1  is  0.828425
-unigram+bigram sw Val acc at alpha= 0.5  is  0.829375
-unigram+bigram sw Val acc at alpha= 1.0  is  0.8281625
-unigram+bigram sw Val acc at alpha= 1.5  is  0.8266625
-unigram+bigram sw Val acc at alpha= 2.0  is  0.8253375
-
-
-unigram+bigram sw val Best accuracy= 0.829375  at alpha= 0.5
-unigram+bigram sw test accuracy= 0.8286625  at best value of alpha
-------------------------------------------------------------------------------------------------
----------------------------------unigram+bigram No stopwords----------------------------------------------
-unigram+bigram nsw Val acc at alpha= 0.01  is  0.807025
-unigram+bigram nsw Val acc at alpha= 0.1  is  0.8187875
-unigram+bigram nsw Val acc at alpha= 0.5  is  0.82415
-unigram+bigram nsw Val acc at alpha= 1.0  is  0.82445
-unigram+bigram nsw Val acc at alpha= 1.5  is  0.82365
-unigram+bigram nsw Val acc at alpha= 2.0  is  0.822925
-
-
-unigram+bigram nsw val Best accuracy= 0.82445  at alpha= 1.0
-unigram+bigram nsw test accuracy= 0.8238375  at best value of alpha
-------------------------------------------------------------------------------------------------
-
-
-
----------------------------------unigram stopwords----------------------------------------------
-Unigram sw Val acc at alpha= 0.01  is  0.8018625
-Unigram sw Val acc at alpha= 0.02  is  0.8029375
-Unigram sw Val acc at alpha= 0.05  is  0.8044875
 Unigram sw Val acc at alpha= 0.1  is  0.8055875
+Unigram sw Val acc at alpha= 0.4  is  0.8069625
 Unigram sw Val acc at alpha= 0.5  is  0.80715
 Unigram sw Val acc at alpha= 1.0  is  0.8067875
 Unigram sw Val acc at alpha= 1.5  is  0.8062875
-
 
 Unigrams sw val Best accuracy= 0.80715  at alpha= 0.5
 Unigrams sw test accuracy= 0.8052375  at best value of alpha
 ------------------------------------------------------------------------------------------------
 ---------------------------------unigram No stopwords----------------------------------------------
-Unigram nsw Val acc at alpha= 0.01  is  0.8036375
-Unigram nsw Val acc at alpha= 0.02  is  0.8045125
-Unigram nsw Val acc at alpha= 0.05  is  0.80605
 Unigram nsw Val acc at alpha= 0.1  is  0.8072125
+Unigram nsw Val acc at alpha= 0.4  is  0.8085875
 Unigram nsw Val acc at alpha= 0.5  is  0.80875
 Unigram nsw Val acc at alpha= 1.0  is  0.8084
 Unigram nsw Val acc at alpha= 1.5  is  0.8081375
-
 
 Unigrams nsw val Best accuracy= 0.80875  at alpha= 0.5
 Unigrams nsw test accuracy= 0.80645  at best value of alpha
 ------------------------------------------------------------------------------------------------
 ---------------------------------Bigram stopwords----------------------------------------------
-Bigram sw Val acc at alpha= 0.01  is  0.8077
-Bigram sw Val acc at alpha= 0.02  is  0.810925
-Bigram sw Val acc at alpha= 0.05  is  0.814725
 Bigram sw Val acc at alpha= 0.1  is  0.8173875
+Bigram sw Val acc at alpha= 0.4  is  0.8203375
 Bigram sw Val acc at alpha= 0.5  is  0.81995
 Bigram sw Val acc at alpha= 1.0  is  0.818175
 Bigram sw Val acc at alpha= 1.5  is  0.81655
 
 
-Bigrams sw val Best accuracy= 0.81995  at alpha= 0.5
-Bigrams sw test accuracy= 0.8177875  at best value of alpha
+Bigrams sw val Best accuracy= 0.8203375  at alpha= 0.4
+Bigrams sw test accuracy= 0.8175625  at best value of alpha
 ------------------------------------------------------------------------------------------------
 ---------------------------------Bigram No stopwords----------------------------------------------
-Bigram nsw Val acc at alpha= 0.01  is  0.7683625
-Bigram nsw Val acc at alpha= 0.02  is  0.7703875
-Bigram nsw Val acc at alpha= 0.05  is  0.7742625
 Bigram nsw Val acc at alpha= 0.1  is  0.7774875
+Bigram nsw Val acc at alpha= 0.4  is  0.7839375
 Bigram nsw Val acc at alpha= 0.5  is  0.7844875
 Bigram nsw Val acc at alpha= 1.0  is  0.784975
 Bigram nsw Val acc at alpha= 1.5  is  0.7842125
@@ -282,22 +132,28 @@ Bigrams nsw val Best accuracy= 0.784975  at alpha= 1.0
 Bigrams nsw test accuracy= 0.7832625  at best value of alpha
 ------------------------------------------------------------------------------------------------
 ---------------------------------unigram+bigram stopwords----------------------------------------------
-unigram+bigram sw Val acc at alpha= 0.01  is  0.821675
-unigram+bigram sw Val acc at alpha= 0.02  is  0.823925
-unigram+bigram sw Val acc at alpha= 0.05  is  0.825925
 unigram+bigram sw Val acc at alpha= 0.1  is  0.8280375
+unigram+bigram sw Val acc at alpha= 0.4  is  0.8299
 unigram+bigram sw Val acc at alpha= 0.5  is  0.829425
 unigram+bigram sw Val acc at alpha= 1.0  is  0.82755
+unigram+bigram sw Val acc at alpha= 1.5  is  0.8261
 
-unigram stopwords: accuracy= 0.8052375  +
-unigram No stopwords: accuracy= 0.80645     
 
-Bigram stopwords: accuracy= 0.8177875   +
-Bigram No stopwords: accuracy= 0.7832625    
+unigram+bigram sw val Best accuracy= 0.8299  at alpha= 0.4
+unigram+bigram sw test accuracy= 0.8271  at best value of alpha
+------------------------------------------------------------------------------------------------
 
-unigram+bigram stopwords: accuracy= 0.82655 +
-unigram+bigram No stopwords: accuracy= 0.824325             
+---------------------------------unigram+bigram No stopwords----------------------------------------------
+unigram+bigram nsw Val acc at alpha= 0.1  is  0.820075
+unigram+bigram nsw Val acc at alpha= 0.4  is  0.8256875
+unigram+bigram nsw Val acc at alpha= 0.5  is  0.825575
+unigram+bigram nsw Val acc at alpha= 1.0  is  0.826475
+unigram+bigram nsw Val acc at alpha= 1.5  is  0.8256125
 
+
+unigram+bigram nsw val Best accuracy= 0.826475  at alpha= 1.0
+unigram+bigram nsw test accuracy= 0.824325  at best value of alpha
+------------------------------------------------------------------------------------------------
 
 
 2596 words with don't in test_sw.csv which are removed in test_nsw.csv
