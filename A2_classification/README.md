@@ -72,10 +72,8 @@ References:
  
 #####   return self -->
 
-#                                                                Report 
+# Results:
 
-# Results: 
-__________________________________________________________
 ### Test set Accuracy:
 | stopwords Removed  | Text features | Accuracy(Test set)|
 | ------------------ | ------------- |-------------------|
