@@ -8,7 +8,7 @@ References:
 ### 1. https://stats.stackexchange.com/questions/33185/difference-between-naive-bayes-multinomial-naive-bayes
 ### 2. https://medium.com/@theflyingmantis/text-classification-in-nlp-naive-bayes-a606bf419f8c
 ### 3. https://en.wikipedia.org/wiki/Multinomial_distribution
-
+https://towardsdatascience.com/why-you-should-avoid-removing-stopwords-aa7a353d2a52
 
 ##### https://stackoverflow.com/questions/29139350/difference-between-ziplist-and-ziplist/29139418
 
@@ -85,12 +85,10 @@ References:
 
 __________________________________________________________
 ### Validation set Accuracy:
-    Hyperparameter tuning with best resulted hyperparameter(alpha), alpha: additive smoothing to supress the effect 
-    of rare words. 
-    For instance:
-        If there is only 1 neg review out of 20 reviews in the training set, then without having
-        significant additive smoothing, model will classify the test data as negative if that word
-        contributing to negative review is there in any of the rveiew.
+- Hyperparameter tuning with best resulted hyperparameter(alpha), alpha: additive smoothing to supress the effect of rare words. 
+    - For instance:
+        - If there is only 1 neg review out of 20 reviews in the training set, then without having significant additive smoothing, model will classify
+        the test data as negative if that word contributing to negative review is there in any of the rveiew.
 
 | stopwords Removed  | Text features | Accuracy(Val set) |  alpha(Best) |
 | ------------------ | ------------- |-------------------|--------------|
@@ -103,19 +101,19 @@ __________________________________________________________
 ________________________________________________________________________
 
 # Analysis: 
-- Performance comparison:  with and without stopwords:  
-    - Overall in my case, Models trained with stopwords performed better than models without stopwords by a small difference in Accuracy of 0.30 in uni+bi and a difference of 3.43% in bigrams with an exception of unigrams where the model without stopwords outperforms the one without stopwords by a negligible accuracy of 0.12%. 
-    - 
-    - 
-    - 
+### Performance comparison:  with and without stopwords:  
+- Overall in my case, Models trained with stopwords performed better than models without stopwords by a small difference 
+in Accuracy of +0.30 in {uni+bi} and a difference of +3.43% in {Bigrams} with an exception of {Unigrams} where the model without 
+stopwords outperforms the one with stopwords by a negligible accuracy of +0.12%.
+- Ideally, If the valence/context is not getting affected by removing SW, Accuracy(NO_SW)>Accuracy(SW).
+- Performance is dependent on dataset and the list of stopwords which are removed. For instance, 
+    - When SW "Don't" is removed, 2596 words with "Don't" contributing to sentiment in test_sw.csv are removed in test_nsw.csv.
+    - Some Review Example set:
+        - my,iphone,does,feel,protected,and,i,don't,have,to,worry,as,much,about,dropping,my,new,phone.
+        - i,also,like,the,fact,that,i,don't,have,to,worry,about,maintaining,a,fancy,handle.
+        - i,don't,see,it,as,a,big,problem,unless,for,some,reason,you,are,in,a,huge,rush.
+    - These reviews on removal of SW "Don't" and other SW's contributing to the sentiment can be misclassified.
+    - Thus, our accuracy with stopwords> without stopwords because valence/context is getting affected after removing SW.
+- Particularly, in bigrams the accuracy difference(SW and n_SW) is huge(3.43%) because the same SW's words are contributing twice at each "nth" token in a review as compared to
+ unigrams and in unigrams+bigrams.
 
-
-
-2596 words with don't in test_sw.csv which are removed in test_nsw.csv
-
-<!-- my,iphone,does,feel,protected,and,i,don't,have,to,worry,as,much,about,dropping,my,new,phone. --> pos review
-This is a positive review and I have taken ""don't"" as a stopword. If I remove that stopword,
-the review will tend to become negative. 
-<!-- i,also,like,the,fact,that,i,don't,have,to,worry,about,maintaining,a,fancy,handle. -->--> pos review
-remove don't it will be classified as neg
-<!-- i,don't,see,it,as,a,big,problem,unless,for,some,reason,you,are,in,a,huge,rush. --> pos review
