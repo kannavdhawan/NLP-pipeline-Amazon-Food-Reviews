@@ -44,7 +44,7 @@ def n_gram_generation(input_lists):
     bigrams_val_sw=n_grams(val_sw_list,u)
     bigrams_test_sw=n_grams(test_sw_list,u)
     print("set 3: train ",len(bigrams_train_sw))
-    print("testing some unigrams :", bigrams_test_sw[0:2])
+    print("testing some bigrams :", bigrams_test_sw[0:2])
 
                                                                     # No stopwords set-4
     bigrams_train_nsw=n_grams(train_nsw_list,u)
