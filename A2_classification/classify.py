@@ -136,8 +136,11 @@ def classify(formatted_data):
     print("---------------------------------unigram+bigram stopwords----------------------------------------------")
     val_a=[]
     for i in alpha_vals:
+        print("1")
         MNB_classifier = SklearnClassifier(MultinomialNB(alpha=i, fit_prior=True, class_prior=None))
+        print("2")
         MNB_classifier.train(ub_sw[0])
+        print("3")
         val_acc=nltk.classify.accuracy(MNB_classifier, ub_sw[1])
         print("unigram+bigram sw Val acc at alpha=",i," is ",val_acc)
         val_a.append(val_acc)

@@ -1,4 +1,7 @@
 
+### Instructions to Run: 
+`python3 A2_classification/main.py data/`
+##### Learn submission is same as mentioned in additional guidelines.
 # Results:
 ### Test set Accuracy:
 | stopwords Removed  | Text features | Accuracy(Test set)|
