@@ -63,6 +63,108 @@ stopwords outperforms the one with stopwords by a negligible accuracy of +0.12%.
 4. https://stackoverflow.com/questions/25155940/nltk-naivebayesclassifier-input-formatting
 5. http://www.sfs.uni-tuebingen.de/~keberle/NLPTools/presentations/NLTK/NLTK_Classifiers.pdf
 
+
+
+
+<!-- output -->
+
+
+
+<!-- 
+---------------------------------unigram stopwords----------------------------------------------
+Unigram sw Val acc at alpha= 0.1  is  0.8055875
+Unigram sw Val acc at alpha= 0.4  is  0.8069625
+Unigram sw Val acc at alpha= 0.5  is  0.80715
+Unigram sw Val acc at alpha= 1.0  is  0.8067875
+Unigram sw Val acc at alpha= 1.5  is  0.8062875
+
+
+Unigrams sw val Best accuracy= 0.80715  at alpha= 0.5
+Unigrams sw test accuracy= 0.8052375  at best value of alpha
+------------------------------------------------------------------------------------------------
+---------------------------------unigram No stopwords----------------------------------------------
+Unigram nsw Val acc at alpha= 0.1  is  0.8072125
+Unigram nsw Val acc at alpha= 0.4  is  0.8085875
+Unigram nsw Val acc at alpha= 0.5  is  0.80875
+Unigram nsw Val acc at alpha= 1.0  is  0.8084
+Unigram nsw Val acc at alpha= 1.5  is  0.8081375
+
+
+Unigrams nsw val Best accuracy= 0.80875  at alpha= 0.5
+Unigrams nsw test accuracy= 0.80645  at best value of alpha
+------------------------------------------------------------------------------------------------
+---------------------------------Bigram stopwords----------------------------------------------
+Bigram sw Val acc at alpha= 0.1  is  0.8173875
+Bigram sw Val acc at alpha= 0.4  is  0.8203375
+Bigram sw Val acc at alpha= 0.5  is  0.81995
+Bigram sw Val acc at alpha= 1.0  is  0.818175
+Bigram sw Val acc at alpha= 1.5  is  0.81655
+
+
+Bigrams sw val Best accuracy= 0.8203375  at alpha= 0.4
+Bigrams sw test accuracy= 0.8175625  at best value of alpha
+------------------------------------------------------------------------------------------------
+---------------------------------Bigram No stopwords----------------------------------------------
+Bigram nsw Val acc at alpha= 0.1  is  0.7774875
+Bigram nsw Val acc at alpha= 0.4  is  0.7839375
+Bigram nsw Val acc at alpha= 0.5  is  0.7844875
+Bigram nsw Val acc at alpha= 1.0  is  0.784975
+Bigram nsw Val acc at alpha= 1.5  is  0.7842125
+
+
+Bigrams nsw val Best accuracy= 0.784975  at alpha= 1.0
+Bigrams nsw test accuracy= 0.7832625  at best value of alpha
+------------------------------------------------------------------------------------------------
+---------------------------------unigram+bigram stopwords----------------------------------------------
+1
+2
+3
+unigram+bigram sw Val acc at alpha= 0.1  is  0.8280375
+1
+2
+3
+unigram+bigram sw Val acc at alpha= 0.4  is  0.8299
+1
+2
+3
+unigram+bigram sw Val acc at alpha= 0.5  is  0.829425
+1
+2
+3
+unigram+bigram sw Val acc at alpha= 1.0  is  0.82755
+1
+2
+3
+unigram+bigram sw Val acc at alpha= 1.5  is  0.8261
+
+
+unigram+bigram sw val Best accuracy= 0.8299  at alpha= 0.4
+unigram+bigram sw test accuracy= 0.8271  at best value of alpha
+------------------------------------------------------------------------------------------------
+---------------------------------unigram+bigram No stopwords----------------------------------------------
+unigram+bigram nsw Val acc at alpha= 0.1  is  0.820075
+unigram+bigram nsw Val acc at alpha= 0.4  is  0.8256875
+unigram+bigram nsw Val acc at alpha= 0.5  is  0.825575
+unigram+bigram nsw Val acc at alpha= 1.0  is  0.826475
+unigram+bigram nsw Val acc at alpha= 1.5  is  0.8256125
+
+
+unigram+bigram nsw val Best accuracy= 0.826475  at alpha= 1.0
+unigram+bigram nsw test accuracy= 0.824325  at best value of alpha
+------------------------------------------------------------------------------------------------ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- SklearnClassifier using Nltk -->
 <!-- 
  #1. uses zip for format provided i.e [({"hello":True},1),(),()] 
