@@ -10,5 +10,5 @@ def main(txt_path):
     for word in list_words:
         model=Word2Vec.load("data/word2vec.model")
         most_sim(model,word,n)
-        
-
+if __name__ == "__main__":
+    main(os.sys.argv[1])
