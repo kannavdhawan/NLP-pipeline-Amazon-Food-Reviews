@@ -33,9 +33,9 @@ word_vectors=model.wv
 print(model.wv.vocab) # A dictionary with {word: keyvectors.Vocab object}
 # print(type(model.wv)) # word to keyed vectors class.
 
-find
-1. model. build vocab,
-@ 2. train 
+# find
+# 1. model. build vocab,
+# @ 2. train 
 
 model.build_vocab(formatted_dataset,progress_per=10000)
 model.train(formatted_dataset, total_examples=model.corpus_count, epochs=15, report_delay=1)
