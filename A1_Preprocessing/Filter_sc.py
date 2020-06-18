@@ -1,7 +1,7 @@
 import numpy as np 
 # Removing separated special characters which are not joined with any other word-- 
 def spaced_special_char_filter(spec_char_list,ob_tokenizer):
-    print("Just checking the size using numpy explicitly/ No use of numpy or numpy array elsewhere: ",np.array(ob_tokenizer).shape) # just checking the shape, nothing else. 
+    print("Just checking the size: ",np.array(ob_tokenizer).shape) # just checking the shape, nothing else. 
     pass
     partially_filtered_positive_reviews=[]
     partially_filtered_negative_reviews=[]

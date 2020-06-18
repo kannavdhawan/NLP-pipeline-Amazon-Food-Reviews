@@ -143,7 +143,28 @@
 # from nltk.corpus import stopwords
 # nltk.download('stopwords')
 # print(stopwords.words('english'))
+# import os
+# def read_dataset(data_path):
+ 
+    # This method is best for shuffling the dataset by preserving the labels as well. But pandas can do it easily and
+    # splitlines is better. 
+#     with open(os.path.join(data_path, 'pos.txt')) as f:
+#         pos_lines = f.readlines() # reading and inserting \n 
+#     with open(os.path.join(data_path, 'neg.txt')) as f:
+#         neg_lines = f.readlines()   
+#     all_lines = pos_lines + neg_lines   ['I ma kannav\n','I am \n']
+#     return list(zip(all_lines, [1]*len(pos_lines) + [0]*len(neg_lines))) #[('hjsj kndjh kshkhd',1),()]
+
+# def test(a):
+#     print('Splitting lines in the dataset')
+#     all = [line.strip().split() for line in a]   #not possible
+#     print(all)
+# a=read_dataset('data/')
+# test(a)
+
+# print([line.strip().split() for line in ['I am kannav 1','I am kann 0']])
+# print(list(zip(['jnjsjhjsd jcdjjd'],[1])))
 
 
-
-
+# from gensim.test.utils import common_texts
+# print(common_texts)
