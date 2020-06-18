@@ -62,7 +62,11 @@ uncomment below code till line 60 if training model using {pos.txt+neg.txt}.
 
 def save_model(formatted_dataset):
     print("Training...")
+<<<<<<< HEAD
     w2v=Word2Vec(sentences=formatted_dataset,min_count=1, size=200) #sample=e-5, alpha=0.01,min_alpha=0.0001,window=5,workers=4
+=======
+    w2v=Word2Vec(sentences=formatted_dataset,min_count=1, size=200,window=5,workers=4) #sample=e-5, alpha=0.01,min_alpha=0.0001
+>>>>>>> cb6df49d312bcf1138048150ece164b0c832c9b9
     w2v.save("data/word2vec.model")
     return "data/word2vec.model"
 
