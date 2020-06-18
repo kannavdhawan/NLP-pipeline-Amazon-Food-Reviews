@@ -15,7 +15,7 @@ uncomment below till ln 16 if training model using {out_sw.csv/out_nsw}.
     #     formatted_dataset.append(temp)
     # print("LofL form df: ",formatted_dataset[0:5])
     '''
-uncomment below code till __ if training model using {pos.txt+neg.txt}.
+uncomment below code till line 60 if training model using {pos.txt+neg.txt}.
 '''
     spec_char = ['!','"','#','%','$','&','(',')','*','+','/',':',';','<','=','>',',','@','[','\\',']','^','`','{','|','}','~','\t','\n','.','-','1','2','3','4','5','6','7','8','9','0']
     with open(os.path.join(data_path,'pos.txt'),'r') as f:
@@ -62,7 +62,7 @@ uncomment below code till __ if training model using {pos.txt+neg.txt}.
 
 def save_model(formatted_dataset):
     print("Training...")
-    w2v=Word2Vec(sentences=formatted_dataset,min_count=1, size=200) #sample=e-5, alpha=0.01,min_alpha=0.0001
+    w2v=Word2Vec(sentences=formatted_dataset,min_count=1, size=200,window=5,workers=4) #sample=e-5, alpha=0.01,min_alpha=0.0001
     w2v.save("data/word2vec.model")
     return "data/word2vec.model"
 
