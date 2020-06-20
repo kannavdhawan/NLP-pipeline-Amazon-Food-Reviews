@@ -4,3 +4,6 @@ price
 wrong
 less
 more
+good
+bad
+great

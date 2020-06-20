@@ -244,3 +244,24 @@ Package defined by nltk which takes sklearn classifier
 #####   return self --> 
 
  
+
+
+
+
+
+<!-- 
+ https://stackoverflow.com/questions/40230865/countvectorizer-and-out-of-vocabulary-oov-tokens
+Right now I'm using CountVectorizer to extract features. However, I need to count words not seen during fitting.
+
+During transforming, the default behavior of CountVectorizer is to ignore words that were not observed during fitting. But I need to keep a count of how many times this happens!
+
+How can I do this?
+
+Thanks!
+
+
+There is no inbuilt way in scikit-learn to do this, you need to write some additional code to be able to do this. However you could use the vocabulary_ attribute of CountVectorizer to achieve this.
+
+Cache the current vocabulary
+Call fit_transform
+Compute the diff with the new vocabulary and the cached vocabulary -->
