@@ -69,8 +69,12 @@ def save_model(formatted_dataset):
 
 def most_sim(model,word,n):
     print("\n\n---------------",word,": Most similar words---------------")
-    for i in range(n):
-        print(model.most_similar(positive=[word], topn=n)[i])
+    try:
+        for i in range(n):
+            print(model.most_similar(positive=[word], topn=n)[i])
+    except:
+        print("word : ",word," not in vocab")
+
 
 def load_model(model_path):
 

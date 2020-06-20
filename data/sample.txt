@@ -7,3 +7,12 @@ more
 good
 bad
 great
+poor
+NotInVocab
+Gaurav
+return
+kannav
+sold
+cheap
+expensive
+fraud
