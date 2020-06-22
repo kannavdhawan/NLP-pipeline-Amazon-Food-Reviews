@@ -65,7 +65,7 @@ uncomment below code till line 60 if training model using {pos.txt+neg.txt}.
 def save_model(formatted_dataset):
     print("Training...")
     start=timeit.default_timer()
-    w2v=Word2Vec(sentences=formatted_dataset,min_count=10, size=350,window=3,workers=4,iter=5) #sample=e-5, alpha=0.01,min_alpha=0.0001
+    w2v=Word2Vec(sentences=formatted_dataset,min_count=10, size=350,window=3,workers=4,iter=30) #sample=e-5, alpha=0.01,min_alpha=0.0001
     stop=timeit.default_timer()
     print("Time taken: ",stop-start)
     w2v.save("data/word2vec.model")
