@@ -2,6 +2,8 @@ import pandas as pd
 from gensim.models import Word2Vec
 import os
 import sys
+import timeit
+
 def load_data(data_path):
     '''
 uncomment below till ln 16 if training model using {out_sw.csv/out_nsw}.
@@ -62,7 +64,10 @@ uncomment below code till line 60 if training model using {pos.txt+neg.txt}.
 
 def save_model(formatted_dataset):
     print("Training...")
-    w2v=Word2Vec(sentences=formatted_dataset,min_count=10, size=350,window=5,workers=4) #sample=e-5, alpha=0.01,min_alpha=0.0001
+    start=timeit.default_timer()
+    w2v=Word2Vec(sentences=formatted_dataset,min_count=10, size=200,window=5,workers=4,iter=3) #sample=e-5, alpha=0.01,min_alpha=0.0001
+    stop=timeit.default_timer()
+    print("Time taken: ",stop-start)
     w2v.save("data/word2vec.model")
     return "data/word2vec.model"
 
@@ -70,8 +75,13 @@ def save_model(formatted_dataset):
 def most_sim(model,word,n):
     print("\n\n---------------",word,": Most similar words---------------")
     try:
+        alltups=[]
+        
         for i in range(n):
-            print(model.most_similar(positive=[word], topn=n)[i])
+            tup=model.most_similar(positive=[word], topn=n)[i]
+            alltups.append(tup)
+        for k, v in dict(alltups).items():
+            print (k, '-->', v)
     except:
         print("word : ",word," not in vocab")
 
