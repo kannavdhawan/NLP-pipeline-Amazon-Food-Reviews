@@ -16,3 +16,6 @@ sold
 cheap
 expensive
 fraud
+awesome
+bitter
+sweet

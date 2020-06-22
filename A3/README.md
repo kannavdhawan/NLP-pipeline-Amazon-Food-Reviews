@@ -64,7 +64,7 @@
         4. The *good*: the non-stick surface works great and is easy to clean.The *bad*: does a terrible job cooking rice.
     - Window size plays an important role while the training phase as the network learns the statistics from the number of times each pairing shows up. In other words, the vector of two words will be pulled closer.
     - So, the similarity is more if the words are closer in the corpus very often which is happening in our case for *good* and *bad* as seen in above examples.
-2. The negation or interchangeable usage in the same context can also be one of the reason for the same. Ex: {"good","bad"}, {"cheap","expensive"} used interchangeably.
+2. The negation or interchangeable usage in the same context can also be one of the reason for the same. Ex: {"good","bad"}, {"cheap","expensive"}, {"sweet","salty"} used interchangeably. Ex:  it's not sweet or salty.
 
 
 #### References:
