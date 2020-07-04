@@ -11,6 +11,7 @@ from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers import Input, Dense, Embedding, Dropout, Activation, Flatten,Conv1D
 from keras import regularizers
+
 random.seed(1332)
 import warnings
 warnings.filterwarnings('ignore')
@@ -236,10 +237,12 @@ def model(X_train,X_val,X_test,max_length,e_dim,v_size,e_mat,y_train,y_val,y_tes
     clf.add(Dense(2,activation='softmax'))# final layer
     clf.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
     print(clf.summary())
-
-
-    clf.fit(X_train, y_train,batch_size=1024,epochs=2,validation_data=(X_val, y_val))
+    clf.fit(X_train, y_train,batch_size=1024,epochs=1,validation_data=(X_val, y_val))
     
-    test_acc=clf.evaluate(X_test,y_test)[1]
+    # target_classes= model.predict(X_test,verbose=1)
+    # target_classes1=np.argmax(target_classes,axis=1)
+    test_score,test_acc = clf.evaluate(X_test,y_test,batch_size=1024)
     print("Test Accuracy : ", test_acc*100)
-    clf.save('data/relu_test.model')
+
+    clf.save('data/relu_test.h5')
+    # keras.models.save_model(clf,'data/') 
