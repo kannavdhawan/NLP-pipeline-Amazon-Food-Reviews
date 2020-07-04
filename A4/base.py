@@ -91,8 +91,6 @@ for word,i in token.word_index.items():
   else:
     embedding_matrix[i]=np.random.randn(1,EMB_DIM)
 
-
-
 y_train=np_utils.to_categorical(y_train)
 y_val=np_utils.to_categorical(y_val)
 y_test=np_utils.to_categorical(y_test)

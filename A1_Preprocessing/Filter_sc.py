@@ -9,7 +9,7 @@ def spaced_special_char_filter(spec_char_list,ob_tokenizer):
 #------ Filter "Explicitly spaced" special characters on positive reviews -------
     for pos_list in ob_tokenizer[0]:
         innerlist_pos=[]
-        pass
+        pass                        
         # print(i)
         # break
         for word in pos_list:
