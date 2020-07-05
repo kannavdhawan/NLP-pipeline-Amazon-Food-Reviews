@@ -6,6 +6,11 @@ import pandas as pd
 import json
 from keras.preprocessing.text import tokenizer_from_json
 from Neural_net import load_data,dataframe_to_l_of_l,fit_on_text
+import numpy as np
+import warnings
+warnings.filterwarnings('ignore')
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 def main(path,model_code):
     data_path='data/'
     with open(path,'r') as f:
@@ -19,11 +24,11 @@ def main(path,model_code):
         else:
             tmp=data[i]
         data_p.append(tmp)
-    print(data_p)
+    # print(data_p)
     
     """returning word index dict from functions defined.
     """
-    
+
     # tup=load_data(data_path)
     # l_of_l=dataframe_to_l_of_l(tup[-1])
     # max_length,token=fit_on_text(l_of_l)
@@ -48,11 +53,10 @@ def main(path,model_code):
         model=keras.models.load_model(os.path.join('data/{}'.format("nn_sigmoid.model")))
     
     print(model.summary())
-    y_pred= model.predict_classes(final_test_data)
+    y_pred=model.predict(final_test_data)
+    y_pred=np.argmax(y_pred, axis=-1)
+    
     print(y_pred)
     
 if __name__=='__main__':
     main(os.sys.argv[1],os.sys.argv[2])
-
-
-
