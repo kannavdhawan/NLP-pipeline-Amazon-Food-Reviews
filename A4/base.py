@@ -95,6 +95,34 @@ y_train=np_utils.to_categorical(y_train)
 y_val=np_utils.to_categorical(y_val)
 y_test=np_utils.to_categorical(y_test)
 
+
+#i
+
+# my_classifier=Sequential()
+
+#   # embedding layer
+# my_classifier.add(Embedding(input_dim=VOCAB_SIZE,output_dim=EMB_DIM,weights=[embedding_matrix], input_length=length,
+#                          trainable=False))
+# my_classifier.add(Flatten())
+
+#   # including L2
+# my_classifier.add(Dense(140,activation='tanh',kernel_regularizer=regularizers.l2(0.0005)))
+
+# my_classifier.add(Dropout(rate=0.2))
+
+# my_classifier.add(Dense(2,activation='softmax'))
+# my_classifier.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
+
+# my_classifier.fit(X_train, y_train,batch_size=2048,epochs=1,validation_data=(X_val, y_val))
+  
+#   # evaluating testing set
+# res=my_classifier.evaluate(X_test,y_test)[1]
+# print(f"Accuracy of model when test Test is taken  : {res*100} ")
+#   # Saving the model
+# my_classifier.save('data/nn_tanh.model')
+
+
+
 classifier=Sequential()
 #114556 - vocab size . number of words in dict. word_index. each word 350 dim 
 classifier.add(Embedding(input_dim=VOCAB_SIZE,output_dim=EMB_DIM,weights=[embedding_matrix], input_length=length,
@@ -123,6 +151,7 @@ y_test=pd.DataFrame(y_test)
 
 classifier.fit(X_train, y_train,
                   batch_size=1024,
-                  epochs=15,
+                  epochs=1,
                   validation_data=(X_val, y_val))
 print("Test Accuracy : " + str(classifier.evaluate(X_test,y_test)[1]*100))
+classifier.save('data/kk.h5')

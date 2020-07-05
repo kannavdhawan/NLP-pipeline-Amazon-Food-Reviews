@@ -179,14 +179,33 @@ Test Accuracy : 75.14374852180481
 
 
 
+1. relu | tanh | sigmoid 
+2. l2 change 
+3. dropouts change 
 
+1. relu l2 change dropout fix => l2 fix 
+2. tanh l2 change dropout
+3. sigmoid 
 
+|Activation function|L2-norm regularization|Dropouts|
 
+|relu|No|0.5|
+|relu||0.01|0.5|
+|relu|0.001|0.5|
+|relu|best|0.3|
+best accuracy =>
 
+|tanh|No|0.5|
+|tanh||0.01|0.5|
+|tanh|0.001|0.5|
+|tanh|best|0.3|
+best accuracy =>
 
-
-
-
+|sigmoid|No|0.5|
+|sigmoid||0.01|0.5|
+|sigmoid|0.001|0.5|
+|sigmoid|best|0.3|
+best accuracy =>
 
 
 Citations: https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html

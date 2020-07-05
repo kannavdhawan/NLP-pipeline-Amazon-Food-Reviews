@@ -116,8 +116,11 @@ def fit_on_text(data):
         argument to the layer).
     =>85% returns 21 . 95% returned 24. 98% provides 25 .  | Acc : 24>21>25 => selecting 95th %
     """
-    max_length= int(np.percentile([len(seq) for seq in data],95)) # average number of words in each sentence.    
-    
+    length_list=[len(seq) for seq in data]
+    #max is 42 which will have too many padded values left for short reviews and decreases the accuracy in turn. so setting a maximum length by finding the average and adding (max-avg)
+    avg=sum(length_list)/len(length_list)
+    max_length= int(avg+(max(length_list)-avg))# average number of words in each sentence.    
+    print("--------------------------------------------------------------------------------------------------",max_length)
     """
     =>Updates internal vocabulary based on a list of texts.
     """
@@ -220,6 +223,7 @@ def to_df(X_train,X_val,X_test,y_train,y_val,y_test):
     return X_train,X_val,X_test,y_train,y_val,y_test
 
 def model(X_train,X_val,X_test,max_length,e_dim,v_size,e_mat,y_train,y_val,y_test):
+    
     clf=Sequential()
     """114556 - vocab size . number of words in dict. word_index.| each word 350 dim 
     All that the Embedding layer does is to map the integer inputs to the vectors found at the corresponding index in the embedding matrix,
@@ -229,20 +233,20 @@ def model(X_train,X_val,X_test,max_length,e_dim,v_size,e_mat,y_train,y_val,y_tes
     e_layer=Embedding(input_dim=v_size,output_dim=e_dim,weights=[e_mat], input_length=max_length,
                             trainable=False)
     clf.add(e_layer) # Embedding layer
-
     #(114556,350,[114556*350],24)==>(None,24,350) i.e. (input_length,output_dim)
     clf.add(Flatten()) #flatten
     clf.add(Dense(128,activation='relu'))# hidden layer 
-    clf.add(Dropout(0.3)) #dropout
+    clf.add(Dropout(0.5)) #dropout
     clf.add(Dense(2,activation='softmax'))# final layer
     clf.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
     print(clf.summary())
-    clf.fit(X_train, y_train,batch_size=1024,epochs=1,validation_data=(X_val, y_val))
+    clf.fit(X_train, y_train,batch_size=1024,epochs=15,validation_data=(X_val, y_val))
     
     # target_classes= model.predict(X_test,verbose=1)
     # target_classes1=np.argmax(target_classes,axis=1)
     test_score,test_acc = clf.evaluate(X_test,y_test,batch_size=1024)
     print("Test Accuracy : ", test_acc*100)
+    # clf.save('data/nn_relu.model')
 
-    clf.save('data/relu_test.h5')
+    # clf.save('data/relu_test.h5')
     # keras.models.save_model(clf,'data/') 
