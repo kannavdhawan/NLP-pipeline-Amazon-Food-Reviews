@@ -15,6 +15,8 @@ from keras import regularizers
 random.seed(1332)
 import warnings
 warnings.filterwarnings('ignore')
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 
 def load_data(path):
     """
@@ -26,7 +28,9 @@ def load_data(path):
     val=pd.read_csv(os.path.join(path,'val_sw.csv'),sep="\n",names=['Review'])
     test=pd.read_csv(os.path.join(path,'test_sw.csv'),sep="\n",names=['Review'])
 
-    print("\t\t\t\tTrain head\n",train.head())
+    # print("\t\t\t\tTrain head\n",train.head())
+
+
     print("shape of train:",train.shape)
     print("shape of val:",val.shape)
     print("shape of test:",test.shape)
@@ -51,9 +55,9 @@ def load_data(path):
     train = train.sample(frac=1).reset_index(drop=True)
     print("\t\t\t\tTrain head:\n",train.head())
     val = val.sample(frac=1).reset_index(drop=True)
-    print("\t\t\t\tVal head:\n",val.head())
+    # print("\t\t\t\tVal head:\n",val.head())
     test = test.sample(frac=1).reset_index(drop=True)
-    print("\t\t\t\tTest head:\n",test.head())
+    # print("\t\t\t\tTest head:\n",test.head())
 
     """
     Implicit labelling If required. Uncomment below till line 73 and comment above from line 24-33
@@ -165,7 +169,7 @@ def texts_to_sequences(token,max_length,X_train,X_val,X_test):
     X_test = token.texts_to_sequences(tst)
 
     # print("X_train_after text to seq",X_train)
-    print("X_train_after text to seq",type(X_train))
+    # print("X_train_after text to seq",type(X_train))
     """
     This function transforms a list (of length num_samples) of sequences (lists of integers) 
     into a 2D Numpy array of shape (num_samples, num_timesteps). 
@@ -180,7 +184,7 @@ def texts_to_sequences(token,max_length,X_train,X_val,X_test):
     print("shape test 3:",X_test.shape)
 
     # print("X_train_after pad seq",X_train)
-    print("X_train_after pad seq",type(X_train))
+    # print("X_train_after pad seq",type(X_train))
     return X_train,X_val,X_test
 
 def embedding_matrix(path,token):
@@ -210,9 +214,9 @@ def embedding_matrix(path,token):
 
 def to_df(X_train,X_val,X_test,y_train,y_val,y_test):
     
-    print("shape of train:",X_train.shape)
-    print("shape of val:",X_val.shape)
-    print("shape of test:",X_test.shape)
+    # print("shape of train:",X_train.shape)
+    # print("shape of val:",X_val.shape)
+    # print("shape of test:",X_test.shape)
 
     X_train=pd.DataFrame(X_train)
     y_train=pd.DataFrame(y_train)
@@ -222,31 +226,39 @@ def to_df(X_train,X_val,X_test,y_train,y_val,y_test):
     y_test=pd.DataFrame(y_test)
     return X_train,X_val,X_test,y_train,y_val,y_test
 
-def model(X_train,X_val,X_test,max_length,e_dim,v_size,e_mat,y_train,y_val,y_test):
-    
-    clf=Sequential()
+def model(X_train,X_val,X_test,max_length,e_dim,v_size,e_mat,y_train,y_val,y_test,act_func,l2_norm_f,l2_norm,dropout_f,dropout):
     """114556 - vocab size . number of words in dict. word_index.| each word 350 dim 
     All that the Embedding layer does is to map the integer inputs to the vectors found at the corresponding index in the embedding matrix,
     i.e. the sequence [1, 2] would be converted to [embeddings[1], embeddings[2]] i.e. the correspondimg 350 sized vector
     .This means that the output of the Embedding layer will be a 3D tensor of shape (samples, sequence_length, embedding_dim).
     """
+    # Embedding layer
+    clf=Sequential()
     e_layer=Embedding(input_dim=v_size,output_dim=e_dim,weights=[e_mat], input_length=max_length,
-                            trainable=False)
-    clf.add(e_layer) # Embedding layer
-    #(114556,350,[114556*350],24)==>(None,24,350) i.e. (input_length,output_dim)
+                            trainable=False)                              #(114556,350,[114556*350],24)==>(None,24,350) i.e. (input_length,output_dim)
+    clf.add(e_layer)
+    #Flatten
     clf.add(Flatten()) #flatten
-    clf.add(Dense(128,activation='relu'))# hidden layer 
-    clf.add(Dropout(0.5)) #dropout
+    #Dense
+    if l2_norm_f==True:
+        clf.add(Dense(128,activation=act_func,kernel_regularizer=regularizers.l2(l2_norm)))
+    else:
+        clf.add(Dense(128,activation=act_func))
+    #dropout
+    if dropout_f==True:
+        clf.add(Dropout(dropout))
+    else:
+        pass
     clf.add(Dense(2,activation='softmax'))# final layer
     clf.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
     print(clf.summary())
-    clf.fit(X_train, y_train,batch_size=1024,epochs=15,validation_data=(X_val, y_val))
     
+    clf.fit(X_train, y_train,batch_size=1024,epochs=15,validation_data=(X_val, y_val))
     # target_classes= model.predict(X_test,verbose=1)
     # target_classes1=np.argmax(target_classes,axis=1)
     test_score,test_acc = clf.evaluate(X_test,y_test,batch_size=1024)
     print("Test Accuracy : ", test_acc*100)
+    """Uncomment below to save the model.
+    """
     # clf.save('data/nn_relu.model')
-
-    # clf.save('data/relu_test.h5')
-    # keras.models.save_model(clf,'data/') 
+    return test_acc*100
