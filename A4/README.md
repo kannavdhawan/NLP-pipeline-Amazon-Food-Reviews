@@ -189,8 +189,8 @@ Test Accuracy : 75.14374852180481
 
 |Activation function|L2-norm regularization|Dropouts|
 
-|relu|No|0.5|
-|relu||0.01|0.5|
+|relu|No|0.5|    => val accuracy: 74.26% | test acc: 74.37%
+|relu||0.01|0.5|    
 |relu|0.001|0.5|
 |relu|best|0.3|
 best accuracy =>
