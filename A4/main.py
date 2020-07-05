@@ -37,23 +37,23 @@ def main(path):
         acc_list.extend([acc1,acc2,acc3,acc4])
 
 
-    print("\t\t\t\t~Activation: relu~")
-    print("L2=F | Dropout=F | Acc: ",acc_list[0])
-    print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[1])
-    print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[2])
-    print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[3])
+    # print("\t\t\t\t~Activation: relu~")
+    # print("L2=F | Dropout=F | Acc: ",acc_list[0])
+    # print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[1])
+    # print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[2])
+    # print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[3])
 
-    print("\t\t\t\t~Activation: tanh~")
-    print("L2=F | Dropout=F | Acc: ",acc_list[4])
-    print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[5])
-    print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[6])
-    print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[7])
+    # print("\t\t\t\t~Activation: tanh~")
+    # print("L2=F | Dropout=F | Acc: ",acc_list[4])
+    # print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[5])
+    # print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[6])
+    # print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[7])
 
-    print("\t\t\t\t~Activation: sigmoid~")
-    print("L2=F | Dropout=F | Acc: ",acc_list[8])
-    print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[9])
-    print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[10])
-    print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[11])
+    # print("\t\t\t\t~Activation: sigmoid~")
+    # print("L2=F | Dropout=F | Acc: ",acc_list[8])
+    # print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[9])
+    # print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[10])
+    # print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[11])
 
 if __name__=='__main__':
     main(os.sys.argv[1])

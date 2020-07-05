@@ -5,6 +5,7 @@ import random
 import os
 from gensim.models import Word2Vec
 import keras
+import json
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.utils import np_utils
@@ -145,9 +146,15 @@ def fit_on_text(data):
     =>Returns: A dictionary word_index with values as indexes . lowest one is most frequent.
     """
     
+    
     list_of_strings_full_data=[' '.join(seq[:]) for seq in data]
     token.fit_on_texts(list_of_strings_full_data)# input to fix_on_text: ['This product is very good','']
     
+    tokenizer_json = token.to_json()
+    with io.open(os.path.join('data/','tokenizer.json'), 'w', encoding='utf-8') as f:
+        f.write(json.dumps(tokenizer_json, ensure_ascii=False))
+
+
     return max_length,token
 
 def texts_to_sequences(token,max_length,X_train,X_val,X_test):
@@ -253,12 +260,12 @@ def model(X_train,X_val,X_test,max_length,e_dim,v_size,e_mat,y_train,y_val,y_tes
     clf.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
     print(clf.summary())
     
-    clf.fit(X_train, y_train,batch_size=1024,epochs=15,validation_data=(X_val, y_val))
+    clf.fit(X_train, y_train,batch_size=1024,epochs=10,validation_data=(X_val, y_val))
     # target_classes= model.predict(X_test,verbose=1)
     # target_classes1=np.argmax(target_classes,axis=1)
     test_score,test_acc = clf.evaluate(X_test,y_test,batch_size=1024)
     print("Test Accuracy : ", test_acc*100)
     """Uncomment below to save the model.
     """
-    # clf.save('data/nn_relu.model')
+    clf.save('data/nn_relu.model')
     return test_acc*100
