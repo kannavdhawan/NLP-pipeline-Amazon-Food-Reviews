@@ -17,14 +17,14 @@ output_dense(None,2) -->
 
 Activation function | L2-norm regularization | Dropout | Train Accuracy(%) | Val Accuracy(%) | Test Accuracy(%)
 --- | --- | --- | --- | --- | ---
-relu | False | False | 77.61 | 73.86 | 74.14
-relu | False | True(0.5) | 74.31 | 74.34 | 74.39    
-relu | True(0.01) | True(0.5) | x | x | x
-relu | True(0.001) | True(0.5) | x | x | x
-tanh | False |False | x | x | x
-tanh | False |True(0.5) | x | x | x |   
-tanh | True(0.01) | True(0.5) | x | x | x
-tanh | True(0.001) | True(0.5) | x|  x | x
+relu | False | False | 78.94 | 74.23 | 74.31
+relu | False | True(0.5) | 73.96 | 74.55 | 74.86    
+relu | True(0.01) | True(0.5) | 63.20 | 70.74 | 70.55
+relu | True(0.001) | True(0.5) | 65.60 | 69.91 | 69.90
+tanh | False |False | 78.25 | 73.14 | 73.26
+tanh | False |True(0.5) | 73.12 | 73.63 | 73.64    
+tanh | True(0.01) | True(0.5) | 68.18 | 71.36 | 71.32
+tanh | True(0.001) | True(0.5) | 70.37|  73.10 | 72.82
 sigmoid | False | False | x | x | x
 sigmoid | False | True(0.5) | x | x | x
 sigmoid | True(0.01) | True(0.5) | x | x | x
@@ -32,3 +32,4 @@ sigmoid | True(0.001) | True(0.5) | x | x | x
 
 - References:
     - https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
+
