@@ -25,10 +25,10 @@ tanh | False |False | 78.25 | 73.14 | 73.26
 tanh | False |True(0.5) | 73.12 | 73.63 | 73.64    
 tanh | True(0.01) | True(0.5) | 68.18 | 71.36 | 71.32
 tanh | True(0.001) | True(0.5) | 70.37|  73.10 | 72.82
-sigmoid | False | False | x | x | x
-sigmoid | False | True(0.5) | x | x | x
-sigmoid | True(0.01) | True(0.5) | x | x | x
-sigmoid | True(0.001) | True(0.5) | x | x | x
+sigmoid | False | False | 83.84 | 74.35 | 74.18
+sigmoid | False | True(0.5) | 76.84 | 74.99 | 75.19
+sigmoid | True(0.01) | True(0.5) | 63.19 | 67.30 | 67.17
+sigmoid | True(0.001) | True(0.5) | 68.93 | 72.02 | 71.92
 
 - References:
     - https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html

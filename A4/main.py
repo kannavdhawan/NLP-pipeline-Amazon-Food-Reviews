@@ -26,9 +26,8 @@ def main(path):
     X_train,X_val,X_test,y_train,y_val,y_test=to_df(X_train,X_val,X_test,y_train,y_val,y_test)
     #|act_func,l2_norm_f,l2_norm,dropout_f,dropout |
 
-    # a_f_list=["relu","tanh","sigmoid"]
-    a_f_list=["sigmoid"]
-
+    a_f_list=["relu","tanh","sigmoid"]
+    
     acc_list=[]
     for act_f in a_f_list:
         print("Model ",act_f)
@@ -37,26 +36,25 @@ def main(path):
                                                             # No dropout leads to overfitting|dropout=0.5 | checking l2 rate 
         acc3=model(X_train,X_val,X_test,max_length,e_dim,v_size,embed_matrix,y_train,y_val,y_test,act_f,True,0.01,True,0.5) #dropout=True| l2 0.01
         acc4=model(X_train,X_val,X_test,max_length,e_dim,v_size,embed_matrix,y_train,y_val,y_test,act_f,True,0.001,True,0.5) #dropout=True| l2 0.001
-        # acc_list.extend([acc1,acc2,acc3,acc4])
+        acc_list.extend([acc1,acc2,acc3,acc4])
 
+    print("\t\t\t\t~Activation: relu~")
+    print("L2=F | Dropout=F | Acc: ",acc_list[0])
+    print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[1])
+    print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[2])
+    print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[3])
 
-    # print("\t\t\t\t~Activation: relu~")
-    # print("L2=F | Dropout=F | Acc: ",acc_list[0])
-    # print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[1])
-    # print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[2])
-    # print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[3])
+    print("\t\t\t\t~Activation: tanh~")
+    print("L2=F | Dropout=F | Acc: ",acc_list[4])
+    print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[5])
+    print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[6])
+    print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[7])
 
-    # print("\t\t\t\t~Activation: tanh~")
-    # print("L2=F | Dropout=F | Acc: ",acc_list[4])
-    # print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[5])
-    # print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[6])
-    # print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[7])
-
-    # print("\t\t\t\t~Activation: sigmoid~")
-    # print("L2=F | Dropout=F | Acc: ",acc_list[8])
-    # print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[9])
-    # print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[10])
-    # print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[11])
+    print("\t\t\t\t~Activation: sigmoid~")
+    print("L2=F | Dropout=F | Acc: ",acc_list[8])
+    print("L2=F | Dropout=T(0.5) | Acc: ",acc_list[9])
+    print("L2=T(0.01) | Dropout=T(0.5) | Acc: ",acc_list[10])
+    print("L2=T(0.001) | Dropout=T(0.5) | Acc: ",acc_list[11])
 
 if __name__=='__main__':
     main(os.sys.argv[1])
