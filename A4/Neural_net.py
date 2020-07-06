@@ -186,9 +186,9 @@ def texts_to_sequences(token,max_length,X_train,X_val,X_test):
     X_train = pad_sequences(X_train, maxlen=max_length, padding='post', truncating='post')
     X_val = pad_sequences(X_val, maxlen=max_length, padding='post', truncating='post')
     X_test = pad_sequences(X_test, maxlen=max_length, padding='post', truncating='post')
-    print("shape test 1:",X_train.shape)
-    print("shape test 2:",X_val.shape)
-    print("shape test 3:",X_test.shape)
+    # print("shape test 1:",X_train.shape)
+    # print("shape test 2:",X_val.shape)
+    # print("shape test 3:",X_test.shape)
 
     # print("X_train_after pad seq",X_train)
     # print("X_train_after pad seq",type(X_train))
@@ -267,5 +267,5 @@ def model(X_train,X_val,X_test,max_length,e_dim,v_size,e_mat,y_train,y_val,y_tes
     print("Test Accuracy : ", test_acc*100)
     """Uncomment below to save the model.
     """
-    # clf.save('data/nn_relu.model')
+    # clf.save('data/nn_tanh.model')
     return test_acc*100

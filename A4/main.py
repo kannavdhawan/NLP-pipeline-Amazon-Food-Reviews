@@ -32,10 +32,10 @@ def main(path):
     for act_f in a_f_list:
         print("Model ",act_f)
         acc1=model(X_train,X_val,X_test,max_length,e_dim,v_size,embed_matrix,y_train,y_val,y_test,act_f,False,0,False,0) # dropout=False | l2 False
-        acc2=model(X_train,X_val,X_test,max_length,e_dim,v_size,embed_matrix,y_train,y_val,y_test,act_f,False,0,True,0.5)# dropout=True | l2 False
+        acc2=model(X_train,X_val,X_test,max_length,e_dim,v_size,embed_matrix,y_train,y_val,y_test,act_f,False,0,True,0.2)# dropout=True | l2 False
                                                             # No dropout leads to overfitting|dropout=0.5 | checking l2 rate 
         acc3=model(X_train,X_val,X_test,max_length,e_dim,v_size,embed_matrix,y_train,y_val,y_test,act_f,True,0.01,True,0.5) #dropout=True| l2 0.01
-        acc4=model(X_train,X_val,X_test,max_length,e_dim,v_size,embed_matrix,y_train,y_val,y_test,act_f,True,0.001,True,0.5) #dropout=True| l2 0.001
+        acc4=model(X_train,X_val,X_test,max_length,e_dim,v_size,embed_matrix,y_train,y_val,y_test,act_f,True,0.0001,True,0.5) #dropout=True| l2 0.001
         acc_list.extend([acc1,acc2,acc3,acc4])
 
     print("\t\t\t\t~Activation: relu~")
