@@ -33,19 +33,20 @@ Activation function | L2-norm regularization | Dropout | Train Accuracy(%) | Val
 --- | --- | --- | --- | --- | ---
 relu | False | True(0.2) | 73.11 | 74.76 | 75.05   
 tanh | False |True(0.2) | 73.25 | 73.97 | 74.44  
-sigmoid | False |True(0.2) | 74.10 | 74.14 | 74.26    
+sigmoid | False |True(0.2) | 74.10 | 74.14 | 74.26      
 
 # Analysis
 __________________________________________
 - Effect of activation functions on results (ReLU,tanh,sigmoid)
     - All the three activation functions provide almost similar results with a mean change in accuracy of (+-)1% for all the models.
     - ReLU works better than tanh and sigmoid by 1% of accuracy and it took 50s/epoch which is much less than the 120s(approx) taken by the other activation functions.
-        ReLU being a ramp function, doesn't end up with vanishing gradient in case of deep networks whereas, sigmoid functions 
-    - On the other and "tanh" works slightly better than the sigmoid in our case 
-    If you use the hyperbolic tangent you might run into the fading gradient problem, meaning if x is 
-    smaller than -2 or bigger than 2, the derivative gets really small and your network might not converge, or you might end up having a
-     dead neuron that does not fire anymore.
-
+        ReLU being a ramp function, doesn't end up with vanishing gradient in case of deep networks whereas, sigmoid functions may end up in vanishing gradient problem i.e. if x<-2(lets say) or x>2, theh derivative becomes small and model may not be able to converge leading to a non firing dead neuron. No problem of dying ReLU was expected or seen. Tested separately using "tf.keras.backend.gradients".
+    - On the other and "tanh" works slightly better than the sigmoid in our case giving an accuracy of 74.44% being costly at 130s/epoch. Reason being, the max value of derivative is upto 1.0 for tanh and 0.25 for sigmoid. So the loss was also reduced largely with large updates. 
+    - Time:
+        - ReLU<tanh<sigmoid
+    - Accuracy:
+        - ReLU>tanh>sigmoid
+    - Note: Please see the plotted loss at bottom.
 
 - References:
     - https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
