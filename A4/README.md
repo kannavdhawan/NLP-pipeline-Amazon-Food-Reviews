@@ -36,3 +36,9 @@ sigmoid | False |True(0.2) | 75.49 | 74.14 | 74.26
 
 - References:
     - https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
+<!-- 
+
+
+66% positive relu 90% neg  78
+71% positive tanh 88    79.2
+67% positive sig 92 79.5 -->

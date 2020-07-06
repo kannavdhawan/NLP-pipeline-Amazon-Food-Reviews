@@ -22,6 +22,7 @@ def main(path):
 
     max_length,token=fit_on_text(data)
     X_train,X_val,X_test=texts_to_sequences(token,max_length,X_train,X_val,X_test) # return token?
+    
     e_dim,v_size,embed_matrix=embedding_matrix(path,token)
     X_train,X_val,X_test,y_train,y_val,y_test=to_df(X_train,X_val,X_test,y_train,y_val,y_test)
     #|act_func,l2_norm_f,l2_norm,dropout_f,dropout |

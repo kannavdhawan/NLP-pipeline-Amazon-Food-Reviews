@@ -87,7 +87,7 @@ def load_data(path):
 
     X_test=test['Review']
     y_test=test['label']
-
+    # print(np.asarray(y_test).tolist()[0:30])
     # print(X_train.head())
 
     #concatinating all data without labels for findingthe max length and creating the word index 
@@ -129,7 +129,7 @@ def fit_on_text(data):
     """
     =>Updates internal vocabulary based on a list of texts.
     """
-    
+    #evrything already lowercase
     token=Tokenizer(filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n')
     
     """
@@ -171,6 +171,7 @@ def texts_to_sequences(token,max_length,X_train,X_val,X_test):
     tr=[' '.join(seq[:]) for seq in X_train]  #['This product is very good','']
     vl=[' '.join(seq[:]) for seq in X_val]    #['This product is very good','']
     tst=[' '.join(seq[:]) for seq in X_test]  #['This product is very good','']
+    # print(tst[0:30])
     X_train = token.texts_to_sequences(tr)
     X_val = token.texts_to_sequences(vl)
     X_test = token.texts_to_sequences(tst)

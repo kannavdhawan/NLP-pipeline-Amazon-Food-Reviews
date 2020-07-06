@@ -60,7 +60,7 @@ def main(path,model_code):
     
     y_pred=['Positive' if x==1 else 'Negative' for x in y_pred]
     for i in range(len(data)):
-        print(data[i],"===>",y_pred[i])
+        print(data[i][0:25],".. ===>",y_pred[i])
     
     
 if __name__=='__main__':
