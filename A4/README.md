@@ -29,6 +29,8 @@ sigmoid | True(0.01) | True(0.5) | 63.19 | 67.30 | 67.17
 sigmoid | True(0.001) | True(0.5) | 68.93 | 72.02 | 71.92
 
 Best Model at 0.2 Dropout:
+Activation function | L2-norm regularization | Dropout | Train Accuracy(%) | Val Accuracy(%) | Test Accuracy(%)
+--- | --- | --- | --- | --- | ---
 relu | False | True(0.2) | 78.11 | 74.76 | 75.05   
 tanh | False |True(0.2) | 75.25 | 73.97 | 74.06    
 sigmoid | False |True(0.2) | 75.49 | 74.14 | 74.26    
