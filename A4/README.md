@@ -24,7 +24,7 @@ tanh | False |True(0.5) | 73.12 | 73.63 | 73.64
 tanh | True(0.01) | True(0.5) | 68.18 | 71.36 | 71.32
 tanh | True(0.001) | True(0.5) | 70.37|  73.10 | 72.82
 sigmoid | False | False | 83.84 | 74.35 | 74.18
-sigmoid | False | True(0.5) | 76.84 | 74.99 | 75.19
+sigmoid | False | True(0.5) | 74.84 | 74.99 | 74.45
 sigmoid | True(0.01) | True(0.5) | 63.19 | 67.30 | 67.17
 sigmoid | True(0.001) | True(0.5) | 68.93 | 72.02 | 71.92
 
@@ -32,13 +32,20 @@ Best Model at 0.2 Dropout:
 Activation function | L2-norm regularization | Dropout | Train Accuracy(%) | Val Accuracy(%) | Test Accuracy(%)
 --- | --- | --- | --- | --- | ---
 relu | False | True(0.2) | 73.11 | 74.76 | 75.05   
-tanh | False |True(0.2) | 73.25 | 73.97 | 74.06    
+tanh | False |True(0.2) | 73.25 | 73.97 | 74.44  
 sigmoid | False |True(0.2) | 74.10 | 74.14 | 74.26    
 
 # Analysis
 __________________________________________
 - Effect of activation functions on results (ReLU,tanh,sigmoid)
-    - 
+    - All the three activation functions provide almost similar results with a mean change in accuracy of (+-)1% for all the models.
+    - ReLU works better than tanh and sigmoid by 1% of accuracy and it took 50s/epoch which is much less than the 120s(approx) taken by the other activation functions.
+        ReLU being a ramp function, doesn't end up with vanishing gradient in case of deep networks whereas, sigmoid functions 
+    - On the other and "tanh" works slightly better than the sigmoid in our case 
+    If you use the hyperbolic tangent you might run into the fading gradient problem, meaning if x is 
+    smaller than -2 or bigger than 2, the derivative gets really small and your network might not converge, or you might end up having a
+     dead neuron that does not fire anymore.
+
 
 - References:
     - https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
