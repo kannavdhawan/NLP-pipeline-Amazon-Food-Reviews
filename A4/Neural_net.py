@@ -261,12 +261,13 @@ def model(X_train,X_val,X_test,max_length,e_dim,v_size,e_mat,y_train,y_val,y_tes
     clf.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
     # print(clf.summary())
     
-    clf.fit(X_train, y_train,batch_size=1024,epochs=15,validation_data=(X_val, y_val))
+    history=clf.fit(X_train, y_train,batch_size=1024,epochs=5,validation_data=(X_val, y_val))
     # target_classes= model.predict(X_test,verbose=1)
     # target_classes1=np.argmax(target_classes,axis=1)
+
     test_score,test_acc = clf.evaluate(X_test,y_test,batch_size=1024)
     print("Test Accuracy : ", test_acc*100)
     """Uncomment below to save the model.
     """
     # clf.save('data/nn_tanh.model')
-    return test_acc*100
+    return test_acc*100,history

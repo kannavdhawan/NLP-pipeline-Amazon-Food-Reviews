@@ -62,6 +62,5 @@ def main(path,model_code):
     for i in range(len(data)):
         print(data[i][0:25],".. ===>",y_pred[i])
     
-    
 if __name__=='__main__':
     main(os.sys.argv[1],os.sys.argv[2])

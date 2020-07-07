@@ -11,4 +11,3 @@
 
 # full_data=[['I' ,'am', 'kannav', 'dhawan'],['I' ,'am', 'kannav', 'dhawan']]
 # print([' '.join(seq[:2]) for seq in full_data])
-
