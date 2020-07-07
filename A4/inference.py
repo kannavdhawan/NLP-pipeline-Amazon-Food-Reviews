@@ -28,7 +28,6 @@ def main(path,model_code):
     
     """returning word index dict from functions defined in Neural_net. Please uncomment if not using .json dict.
     """
-
     # tup=load_data(data_path)
     # l_of_l=dataframe_to_l_of_l(tup[-1])
     # max_length,token=fit_on_text(l_of_l)
@@ -51,6 +50,7 @@ def main(path,model_code):
         model=keras.models.load_model(os.path.join('data/{}'.format("nn_tanh.model")))
     elif model_code=="sigmoid":
         model=keras.models.load_model(os.path.join('data/{}'.format("nn_sigmoid.model")))
+    
     
     # print(model.summary())
     y_pred=model.predict(final_test_data)

@@ -4,6 +4,12 @@ flatten (Flatten)->(None, 8400)
 Dense(None,120)
 Dropout(None,120)
 output_dense(None,2) -->
+## Running Instructions:
+1. main.py => To generate model : 
+    `python3 A4/main.py data/`
+2. inference.py => To predict txt file using saved model:
+    `python3 A4/inference.py data/sample_test.txt tanh`
+
 - Width of the network at H.L
     - neurons: 64 
         - accuracy: 0.7587 | val_accuracy: 0.7427
