@@ -88,5 +88,5 @@ Loss:
 <!-- 
 66% positive relu 90% neg  78
 71% positive tanh 88    79.2
-67% positive sig 92 79.5 --> -->
+67% positive sig 92 79.5 --> 
 ###### commented!!
