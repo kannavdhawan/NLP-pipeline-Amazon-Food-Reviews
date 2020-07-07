@@ -54,7 +54,7 @@ __________________________________________
 - Loss(val):
     - tanh<ReLU<sigmoid (Negligible change)
 - Thus, we may choose tanh if accuracy is considered leaving the time complexity behind. ReLU can be  chosen as our Activation function given the time complexity and decent accuracy with no problem of vanishing gradient.
-- Note: Please see the plotted loss at bottom for 5 epochs. 
+<!-- - Note: Please see the plotted loss at bottom for 5 epochs.  -->
 ________________________________________________________
  ### Effect of L2-norm regularization
  
@@ -62,23 +62,23 @@ ________________________________________________________
 - Regularization penalizes the coefficients/wt. matrices to avoid overfitting. Cost function = Loss(cross entropy) + Regularization_term. It reduces the weight matrix close to zero and reduces the overfitting.
 - L2 produces small non zero/non sparse coefficients/wts and when L2 used with sigmoid which is not zero averaged/centered, hence the accuracy can be seen dropping for our sparse data.
 - whereas model with activation function "tanh" being zero centered isn't getting effected that much on adding l2 reg, although not improving the accuracy as well. 
-- However, the training accuracy on adding l2 reg is less than the validation accuracy for all the cases.
+- However, the training accuracy on adding l2 reg is less than the validation accuracy for all the cases which draws a good pattern of proof.
 
 __________________________________________
 ### Effect of Dropout
-- Adding the dropout of 0.5 increased the validation accuracy leading to less overfitting which can also be seen on comparing the training accuracy with and without dropout.
-- Dropout is also a refularization technique which randomly selects the n described nodes and removes them with all their incoming and outgoing connections in the network. 
+- Adding the dropout of 0.5 increased the validation accuracy leading to less overfitting which can also be seen on comparing the accuracy with and without dropout.
+- Dropout is also a regularization technique which randomly selects the n described nodes and removes them with all their incoming and outgoing connections in the network. 
 - Thus adding randomness, we are preventing overfitting in our model. Dropout rate of 0.2 was found a decent choice for this data. 
 
 
 
 <!-- Typically ridge or ℓ2 penalties are much better for minimizing prediction error rather than ℓ1 penalties. The reason for this is that when two predictors are highly correlated, ℓ1 regularizer will simply pick one of the two predictors. In contrast, the ℓ2 regularizer will keep both of them and jointly shrink the corresponding coefficients a little bit. Thus, while the ℓ1 penalty can certainly reduce overfitting, you may also experience a loss in predictive power. -->
 
-
+<!-- 
 Loss:
 
 ![alt text](loss.png "Loss for various Activation functions")
-
+ -->
 
 #### References:
 - https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
