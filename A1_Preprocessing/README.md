@@ -1,4 +1,4 @@
-# Assignment 1 | Preprocessing
+# Preprocessing
 -------------------------------------------------
 
 # Instructions to run the code:
