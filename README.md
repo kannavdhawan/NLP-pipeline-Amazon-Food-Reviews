@@ -58,7 +58,7 @@ ______________
 ______________
 ______________
 ______________
-
+# Classification using MNB and variations of N-grams and other parameters.
 
 
 ### Instructions to Run: 
@@ -335,6 +335,8 @@ _____________
 ____________
 ____________
 
+# Word2vec Implementation 
+
 ### Instructions to Run: 
 - To Train the model: `python3 A3/main.py data/` 
 - To Test the model: `python3 A3/inference.py data/sample.txt`
@@ -419,6 +421,11 @@ flatten (Flatten)->(None, 8400)
 Dense(None,120)
 Dropout(None,120)
 output_dense(None,2) -->
+
+
+# Feed Forward Neural Network 
+
+
 ## Running Instructions:
 1. main.py => To generate model : 
     `python3 A4/main.py data/`
